@@ -1,0 +1,21 @@
+Mobile Phone Distribution Software
+
+The premise of our project is that we are a mobile phone network provider (similar to Meteor or Vodafone) that needs software to 
+track the distribution of mobile phones from centres in the different countries that we operate in (Ireland, U.K., Spain, Germany,
+and France (anywhere else? I just picked those at random)) and also to provide an interface for our branches in these countries to
+buy stock.
+
+Use Cases:
+
+Server Side
+
+getStock – From  manufacturer
+moveStock – From one centre to another (if a certain type of stock has little demand in one centre but more in another)
+addProduct – Add a product to the system (e.g. Samsung Galaxy S6)
+removeProduct – Take a product that is no longer sold off the system
+calculatePrice – Calculate price of product based on country taxes or applicable discounts
+
+Client Side
+
+buyProduct – From ‘us’
+returnProduct – Return unsold stock? (This could then be moved by us to another country with moveStock use case?)
