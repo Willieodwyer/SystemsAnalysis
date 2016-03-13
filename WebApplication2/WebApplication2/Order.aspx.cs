@@ -31,6 +31,7 @@ namespace WebApplication2
             {
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
                 int quantity = Convert.ToInt32(txtQuantity.Text);
+                txtPrice.Text = "1";
                 double price = Convert.ToDouble(txtPrice.Text);
 
                 String sql = "INSERT INTO [Order] VALUES(@CustomerID, @ProductID, @Address, @Amount, @OrderDate, @SupplierID)";
@@ -48,7 +49,7 @@ namespace WebApplication2
                     command.Parameters["@ProductID"].Value = lstProducts.SelectedItem.Value;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = "Somewhere better than here";
+                    command.Parameters["@Address"].Value = DBNull.Value;
 
                     command.Parameters.Add("@Amount", SqlDbType.Float);
                     command.Parameters["@Amount"].Value = price;
@@ -70,6 +71,7 @@ namespace WebApplication2
                 finally
                 {
                     connection.Close();
+                    Response.Redirect("OrderView.aspx?ID=" + lstProducts.SelectedValue.ToString());
                 }
 
             }

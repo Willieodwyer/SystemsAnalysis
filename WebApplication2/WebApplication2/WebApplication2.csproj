@@ -74,6 +74,7 @@
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="Order.aspx" />
+    <Content Include="OrderView.aspx" />
     <Content Include="Register User.aspx" />
     <Content Include="Web.config" />
     <Content Include="HomePage.aspx" />
@@ -85,6 +86,13 @@
     </Compile>
     <Compile Include="Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderView.aspx.cs">
+      <DependentUpon>OrderView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderView.aspx.designer.cs">
+      <DependentUpon>OrderView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Register User.aspx.cs">
       <DependentUpon>Register User.aspx</DependentUpon>
