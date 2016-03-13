@@ -10,13 +10,17 @@
     <form id="form1" runat="server">
         <div>
 
-            <asp:Label ID="lblProduct" runat="server" Text="Product" Font-Bold="True" Width="170px" Font-Size="Medium"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtProduct" runat="server" Width="170px" OnTextChanged="txtProduct_TextChanged"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ControlToValidate="txtProduct"
-                ErrorMessage="Product is a required field."
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
+            <asp:label id="Label1" 
+                   runat="server" 
+                   Width="120px" 
+                   Height="20px">Select Product:</asp:label>&nbsp;
+    <asp:dropdownlist id="lstProducts" 
+                      runat="server" 
+                      Width="256px" 
+                      Height="22px" 
+                      AutoPostBack="True" 
+                      onselectedindexchanged="lstProducts_SelectedIndexChanged">
+    </asp:dropdownlist>
             <br />
             <br />
 
@@ -31,6 +35,7 @@
                 MinimumValue="1"
                 Type="Integer">
             </asp:RangeValidator>
+             <asp:RequiredFieldValidator runat="server" controltovalidate="txtQuantity" errormessage="Please enter a quantity!!" />
             <br />
             <br />
 
