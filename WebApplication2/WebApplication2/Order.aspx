@@ -10,17 +10,17 @@
     <form id="form1" runat="server">
         <div>
 
-            <asp:label id="Label1" 
-                   runat="server" 
-                   Width="120px" 
-                   Height="20px">Select Product:</asp:label>&nbsp;
-    <asp:dropdownlist id="lstProducts" 
-                      runat="server" 
-                      Width="256px" 
-                      Height="22px" 
-                      AutoPostBack="True" 
-                      onselectedindexchanged="lstProducts_SelectedIndexChanged">
-    </asp:dropdownlist>
+            <asp:Label ID="Label1"
+                runat="server"
+                Width="120px"
+                Height="20px">Select Product:</asp:Label>&nbsp;
+    <asp:DropDownList ID="lstProducts"
+        runat="server"
+        Width="256px"
+        Height="22px"
+        AutoPostBack="True"
+        OnSelectedIndexChanged="lstProducts_SelectedIndexChanged">
+    </asp:DropDownList>
             <br />
             <br />
 
@@ -35,13 +35,12 @@
                 MinimumValue="1"
                 Type="Integer">
             </asp:RangeValidator>
-             <asp:RequiredFieldValidator runat="server" controltovalidate="txtQuantity" errormessage="Please enter a quantity!!" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtQuantity" ErrorMessage="Please enter a quantity!!" />
             <br />
             <br />
 
             <asp:Label ID="lblPrice" runat="server" Text="Price" Font-Bold="True" Width="170px" Font-Size="Medium"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtPrice" runat="server" Width="170px">
-            </asp:TextBox><asp:RangeValidator
+            &nbsp;<asp:TextBox ID="txtPrice" runat="server" Width="170px" Enabled="False"></asp:TextBox><asp:RangeValidator
                 ID="RangeValidator2"
                 runat="server"
                 ErrorMessage="Must be between 1 and 10000"
@@ -52,7 +51,9 @@
             <br />
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnOrder" runat="server" Font-Bold="True" Text="ORDER" OnClick="btnOrder_Click" />
+        <asp:Button ID="btnOrder" runat="server" Font-Bold="True" Text="New Order" OnClick="btnOrder_Click" />
+            <asp:Button ID="btnAddOrder" runat="server" Font-Bold="True" Text="Add to Order" OnClick="btnAddProduct_Click" Enabled="False" />
+            <asp:Button ID="btnViewOrder" runat="server" Font-Bold="True" Text="View Order" OnClick="btnViewOrder_Click" Enabled="False" />
             <br />
             <br />
             <asp:Label ID="lblSuccess" runat="server"></asp:Label>
