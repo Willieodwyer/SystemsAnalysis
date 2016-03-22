@@ -17,6 +17,8 @@ namespace WebApplication2
 {
     public partial class Order1 : System.Web.UI.Page
     {
+        static Order newOrder;
+        double price;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -29,73 +31,26 @@ namespace WebApplication2
         {
             if (IsValid)
             {
-                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-                int quantity = Convert.ToInt32(txtQuantity.Text);
-                txtPrice.Text = "1";
-                double price = Convert.ToDouble(txtPrice.Text);
+                newOrder = new Order(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land", 
+                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text), DateTime.Now);
+                newOrder.CreateOrder();
 
-                String sql = "INSERT INTO [Order] VALUES(@CustomerID, @ProductID, @Address, @Amount, @OrderDate, @SupplierID)";
-
-                //if there is an error with the data it will catch the exception and display an error
-                try
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(sql, connection);
-
-                    command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                    command.Parameters["@CustomerID"].Value = DBNull.Value;
-
-                    command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = lstProducts.SelectedItem.Value;
-
-                    command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = DBNull.Value;
-
-                    command.Parameters.Add("@Amount", SqlDbType.Float);
-                    command.Parameters["@Amount"].Value = price;
-
-                    command.Parameters.Add("@OrderDate", SqlDbType.DateTime);
-                    command.Parameters["@OrderDate"].Value = DateTime.Now;
-
-                    command.Parameters.Add("@SupplierID", SqlDbType.Int);
-                    command.Parameters["@SupplierID"].Value = DBNull.Value;
-
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    Response.Write("Order processed!!");
-                }
-                catch (SqlException sqlEx)
-                {
-                    Response.Write(sqlEx.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                    Response.Redirect("OrderView.aspx?ID=" + lstProducts.SelectedValue.ToString());
-                }
-
+                Response.Write("Order processed!!");
+                btnOrder.Enabled = false;
+                btnAddOrder.Enabled = true;
+                btnViewOrder.Enabled = true;
             }
-
-        }
-
-        protected void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtQuantity_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtProduct_TextChanged(object sender, EventArgs e)
-        {
 
         }
 
         private void FillProductList()
         {
             lstProducts.Items.Clear();
+            ListItem baseItem = new ListItem();
+            baseItem.Text = "Please select a product";
+            baseItem.Value = "0";
+            lstProducts.Items.Add(baseItem);
+
             string selectSQL = "SELECT ProductID FROM [Products]";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
@@ -139,11 +94,11 @@ namespace WebApplication2
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-
                     txtPrice.Text = reader["Price"].ToString();
-
+                    price = Convert.ToDouble(txtPrice.Text);
                 }
                 reader.Close();
+
             }
             catch (SqlException sqlEx)
             {
@@ -155,7 +110,41 @@ namespace WebApplication2
             }
 
         }
-    }
 
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            if (newOrder != null)
+            {
+                newOrder.AddProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text));
+
+                Response.Write("Product processed!!");
+            }
+            else
+                Response.Write("new order is null????");
+        }
+
+        protected void btnViewOrder_Click(object sender, EventArgs e)
+        {
+            Session["ID"] = newOrder.OrderID;
+            Session["OrderOBJ"] = newOrder;
+            Response.Redirect("OrderView.aspx");
+        }
+
+        protected void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+    }
 
 }
