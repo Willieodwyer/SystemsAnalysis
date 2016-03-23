@@ -1,0 +1,15 @@
+Cart:
+
+addToCart(int customerID, int productID, int quantity)
+	Checks if customer already has that product in their cart, if they do its incremented by the quantity 
+							   	   if they don't the product and quantity is added 
+
+getCartID(int customerID)
+	Used by addToCart to check if that customer already has a cartID assigned to them, if it does it returns it
+										   	   if it doesn't it checks the max of the
+										           cartID's and assigns it to that customer
+
+	Used by removeFromCart to get customer's cartID
+ 
+removeFromCart(int customerID, int productID)
+	Used from ViewCart page to remove products from a customer's cart
