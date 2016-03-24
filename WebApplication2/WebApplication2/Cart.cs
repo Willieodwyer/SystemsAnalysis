@@ -9,176 +9,142 @@ namespace WebApplication2
 {
     public class Cart
     {
-        
+        public int CustomerID { get; set; }
+        public int CartID { get; set; }
 
-        public void addToCart(int customerID, int productID, int quantity)
+
+        public Cart(int customerID, int cartID)
         {
-            //get CartID for customer
-            int cartID = getCartID(customerID);
-            int qty = 0;
+            String sql = "SELECT MAX(CartID) as MAX FROM [ShoppingCart]";
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-            
-            //check if customer already has this product in their cart
-            //if they do, add the quantity to the current quantity
-            //if they don't add a new line for that product
-            Boolean hasProduct = false;
-            SqlDataReader reader;
-            String sql = "SELECT productID, Quantity FROM [ShoppingCart] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
-
             SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+            command = new SqlCommand(sql, connection);
 
-            command.Parameters.Add("@CustomerID", SqlDbType.Int);
-            command.Parameters["@CustomerID"].Value = customerID;
-
-            command.Parameters.Add("@ProductID", SqlDbType.Int);
-            command.Parameters["@ProductID"].Value = productID;
-
-            connection.Open();
-            reader = command.ExecuteReader();
-
-            if(reader.HasRows)
+            try
             {
-                hasProduct = true;
+                connection.Open();
+                reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    qty = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                    cartID = reader.GetInt32(reader.GetOrdinal("MAX"));
                 }
+                cartID++;
+                reader.Close();
             }
-
-            reader.Close();
-            connection.Close();
-
-
-            if (!hasProduct)
+            catch (SqlException sqlEx)
             {
-                sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, @ProductID, @Quantity, @CartID)";
-                
-
-                    connection.Open();
-                    command = new SqlCommand(sql, connection);
-
-                    command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                    command.Parameters["@CustomerID"].Value = customerID;
-
-                    command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = productID;
-
-                    command.Parameters.Add("@Quantity", SqlDbType.Int);
-                    command.Parameters["@Quantity"].Value = quantity;
-
-                    command.Parameters.Add("@CartID", SqlDbType.Int);
-                    command.Parameters["@CartID"].Value = cartID;
-
-                    command.ExecuteNonQuery();
-                    connection.Close();
-               
+                Console.WriteLine(sqlEx.Message);
             }
-            else
+            finally
             {
-                quantity = quantity + qty;
-                sql = "UPDATE [ShoppingCart] SET Quantity = @Quantity WHERE CustomerID = @CustomerID AND CartID = @CartID AND"
-                        + " ProductID = @ProductID";
+                connection.Close();
+            }
+            CustomerID = customerID;
+            CartID = cartID;
+        }
 
+        public bool CreateCart()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+
+            String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, NULL, NULL, @CartID)";
+
+            try
+            {
 
                 connection.Open();
-                command = new SqlCommand(sql, connection);
-
-                command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                command.Parameters["@CustomerID"].Value = customerID;
-
-                command.Parameters.Add("@ProductID", SqlDbType.Int);
-                command.Parameters["@ProductID"].Value = productID;
-
-                command.Parameters.Add("@Quantity", SqlDbType.Int);
-                command.Parameters["@Quantity"].Value = quantity;
+                SqlCommand command = new SqlCommand(sql, connection);
 
                 command.Parameters.Add("@CartID", SqlDbType.Int);
-                command.Parameters["@CartID"].Value = cartID;
+                command.Parameters["@CartID"].Value = this.CartID;
+
+                command.Parameters.Add("@CustomerID", SqlDbType.Int);
+                command.Parameters["@CustomerID"].Value = this.CustomerID;
 
                 command.ExecuteNonQuery();
                 connection.Close();
-                        
+                return true;
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx);
+                return false;
             }
         }
 
-        public void removeFromCart(int customerID, int productID)
+
+        public void EditCart(int customerID, int cartID)
+        {
+            CustomerID = customerID;
+            CartID = cartID;
+        }
+
+        public bool AddToCart(int productID, int quantity)
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+
+            String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, @ProductID, @Quantity, @CartID)";
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+
+                command.Parameters.Add("@CustomerID", SqlDbType.Int).Value = this.CustomerID;
+
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = productID;
+
+                command.Parameters.Add("@Quantity", SqlDbType.Int).Value = quantity;
+
+                command.Parameters.Add("@CartID", SqlDbType.Int).Value = this.CartID;
+
+                command.ExecuteNonQuery();
+                connection.Close();
+
+                return true;
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void RemoveFromCart(int productID)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
             String sql = "DELETE FROM [ShoppingCart] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.Add("@CustomerID", SqlDbType.Int);
-            command.Parameters["@CustomerID"].Value = customerID;
-
-            command.Parameters.Add("@ProductID", SqlDbType.Int);
-            command.Parameters["@ProductID"].Value = productID;
-
-            connection.Open();
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        public int getCartID(int customerID)
-        {
-            //check if customerID already has a cartID, if not get the max cartID, increment it and assign it to the given customerID
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-            SqlDataReader reader;
-            String sql = "SELECT CartID FROM [ShoppingCart] Where CustomerID = @CustomerID";
-            int cartID = 0;
-            connection.Open();
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.Add("@CustomerID", SqlDbType.Int);
-            command.Parameters["@CustomerID"].Value = customerID;
-
-            reader = command.ExecuteReader();
-
-            while(reader.Read())
+            try
             {
-              cartID = reader.GetInt32(reader.GetOrdinal("CartID"));
-            }
+                command.Parameters.Add("@CustomerID", SqlDbType.Int);
+                command.Parameters["@CustomerID"].Value = this.CustomerID;
 
-            reader.Close();
-            connection.Close();
-            //if the cart ID exists, return it
-            if(cartID != 0)
-                return cartID;
-            //if not then get the max, increment it, insert it (using addCartID), return it
-            else
-            {
-                sql = "SELECT MAX(CartID) as MAX FROM [ShoppingCart]";
+                command.Parameters.Add("@ProductID", SqlDbType.Int);
+                command.Parameters["@ProductID"].Value = productID;
+
                 connection.Open();
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while(reader.Read())
-                {
-                    cartID = reader.GetInt32(reader.GetOrdinal("MAX"));
-                }
-                cartID++;
-                reader.Close();
+                command.ExecuteNonQuery();
+
                 connection.Close();
-                addCartID(customerID, cartID);
-                return cartID;
             }
-
-
-        }
-
-        public void addCartID(int customerID, int cartID)
-        {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-            String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, NULL, NULL, @CartID)";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID;
-            command.Parameters.Add("CartID", SqlDbType.Int).Value = cartID;
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
+        
 }
