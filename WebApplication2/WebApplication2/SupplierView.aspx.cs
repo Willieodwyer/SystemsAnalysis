@@ -15,29 +15,30 @@ using System.Text;
 
 namespace WebApplication2
 {
-    public partial class OrderView : System.Web.UI.Page
+    public partial class SupplierView : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Order sentOrder = (Order) Session["OrderOBJ"];
-            //Response.Write(sentOrder.PrintOrder());
             try
             {
                 string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
                 SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Order] WHERE OrderID = " + Session["ID"].ToString(), sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Supplier]", sqlConnection);
                 sqlConnection.Open();
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
                 GridView1.DataSource = reader;
                 GridView1.DataBind();
+                sqlConnection.Close();
+
                 //Response.Write(Session["ID"].ToString());
             }
             catch (SqlException sept)
             {
                 Response.Write(sept.Message);
             }
+            
         }
     }
 }
