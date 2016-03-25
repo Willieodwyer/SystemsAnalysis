@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Registration Page</title>
+    <title>Create Order</title>
 </head>
 <body style="height: 200px">
     <form id="form1" runat="server">
@@ -45,7 +45,7 @@
                 runat="server"
                 ErrorMessage="Must be between 1 and 10000"
                 ControlToValidate="txtPrice"
-                MaximumValue="100"
+                MaximumValue="10000"
                 MinimumValue="1"
                 Type="Double"></asp:RangeValidator>
             <br />
