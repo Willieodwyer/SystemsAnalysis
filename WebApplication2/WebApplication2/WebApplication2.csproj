@@ -76,8 +76,10 @@
     <Content Include="Order.aspx" />
     <Content Include="OrderView.aspx" />
     <Content Include="Register User.aspx" />
+    <Content Include="SupplierView.aspx" />
     <Content Include="Web.config" />
     <Content Include="HomePage.aspx" />
+    <Content Include="Supplier.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order.aspx.cs">
@@ -113,6 +115,20 @@
     </Compile>
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.aspx.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supplier.aspx.designer.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierView.aspx.cs">
+      <DependentUpon>SupplierView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupplierView.aspx.designer.cs">
+      <DependentUpon>SupplierView.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

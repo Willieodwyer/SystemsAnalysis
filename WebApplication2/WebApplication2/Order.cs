@@ -116,6 +116,7 @@ namespace WebApplication2
         public void EditOrder(int orderID, int customerID, int productID, int supplierID, String address, double amount,
             DateTime date)
         {
+            //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
             OrderID = orderID;
             CustomerID = customerID;
             ProductID = productID;
@@ -123,6 +124,51 @@ namespace WebApplication2
             Address = address;
             Amount = amount;
             Date = date;
+
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+
+            String sql = "UPDATE [Order] SET CustomerID = @CustomerID, ProductID = @ProductID," +
+                                "Address = @Address, Amount = @Amount,  OrderDate = @OrderDate, SupplierID = @SupplierID WHERE OrderID = @OrderID)";
+
+            //if there is an error with the data it will catch the exception and display an error
+            try
+            {
+                if (this.ProductID > 0)
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    command.Parameters.Add("@CustomerID", SqlDbType.Int);
+                    command.Parameters["@CustomerID"].Value = this.CustomerID;
+
+                    command.Parameters.Add("@ProductID", SqlDbType.Int);
+                    command.Parameters["@ProductID"].Value = this.ProductID;
+
+                    command.Parameters.Add("@Address", SqlDbType.NVarChar);
+                    command.Parameters["@Address"].Value = this.Address;
+
+                    command.Parameters.Add("@Amount", SqlDbType.Float);
+                    command.Parameters["@Amount"].Value = this.Amount;
+
+                    command.Parameters.Add("@OrderDate", SqlDbType.DateTime);
+                    command.Parameters["@OrderDate"].Value = this.Date;
+
+                    command.Parameters.Add("@SupplierID", SqlDbType.Int);
+                    command.Parameters["@SupplierID"].Value = this.SupplierID;
+
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public bool AddProduct(int pID, int amnt)
