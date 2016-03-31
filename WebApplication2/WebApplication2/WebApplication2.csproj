@@ -73,6 +73,8 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="Cart_cs_functionality.txt" />
+    <Content Include="CatalogueView.aspx" />
     <Content Include="Order.aspx" />
     <Content Include="OrderView.aspx" />
     <Content Include="Register User.aspx" />
@@ -82,6 +84,15 @@
     <Content Include="Supplier.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cart.cs" />
+    <Compile Include="Catalogue.cs" />
+    <Compile Include="CatalogueView.aspx.cs">
+      <DependentUpon>CatalogueView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CatalogueView.aspx.designer.cs">
+      <DependentUpon>CatalogueView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +141,7 @@
     <Compile Include="SupplierView.aspx.designer.cs">
       <DependentUpon>SupplierView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Test.aspx.designer.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
