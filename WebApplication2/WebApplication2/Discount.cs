@@ -19,11 +19,10 @@ namespace WebApplication2
     public class Discount
     {
         public int customerClass { get; set; }
-        public List<int> productList { get; set; }
-        public List<int> customerList { get; set; }
-        public List<double> discountList { get; set; }
 
-        public Discount(int custClass)
+        double discount;
+
+        public Discount(int custClass , int pID)
         {
             try
             {
@@ -37,9 +36,14 @@ namespace WebApplication2
                 while (reader.Read())
                 {
                     //OrderID	CustomerID	ProductID	Address	Amount	OrderDate	SupplierID
-                    productList.Add(Convert.ToInt32(reader["ProductID"]));
-                    customerList.Add(Convert.ToInt32(reader["CustomerID"]));
-                    discountList.Add(Convert.ToDouble(reader["discount"]));
+                    if(pID == Convert.ToInt32(reader["ProductID"])){
+                        discount = Convert.ToDouble(reader["discount"]);
+                    }
+                    else if(custClass == Convert.ToInt32(reader["CustomerID"])){
+                        discount = Convert.ToDouble(reader["discount"]);
+                    }
+                    else
+                        discount = 1;
                 }
             }
             catch (SqlException sept)
@@ -50,40 +54,9 @@ namespace WebApplication2
             customerClass = custClass;
         }
 
-        public double applyDiscount(double A, int pID)
+        public double applyDiscount(double A)
         {
-            double Amount = A; 
-            switch (customerClass)
-            {
-                case 1:
-                    Amount =  A * 0.8;
-                    break;
-                case 2:
-                    Amount = A * .8;
-                    break;
-
-                case 3:
-                    Amount = A * .7;
-                    break;
-
-                case 4:
-                    Amount = A * .6;
-                    break;
-            }
-            switch (pID)
-            {
-                case 1:
-                    Amount = Amount * .95;
-                    break;
-                case 2:
-                    Amount = Amount * .9;
-                    break;
-
-                case 3:
-                    Amount = Amount * .85;
-                    break;
-            }
-            return A;
+            return A * discount;
         }
     }
 
