@@ -100,6 +100,7 @@
     <Compile Include="Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrderMapper.cs" />
     <Compile Include="OrderView.aspx.cs">
       <DependentUpon>OrderView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
