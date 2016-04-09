@@ -57,7 +57,7 @@ namespace WebApplication2
             
         }
 
-        public string AddProduct(int pID, int amnt)
+        public string AddProduct(int pID, double amnt)
         {
             return OrderMapper.AddProduct(this, pID, amnt);
         }
@@ -87,11 +87,10 @@ namespace WebApplication2
                     + "," + reader["ProductID"] + "," + reader["Address"] + "," + reader["Amount"] + "," + reader["OrderDate"] + "," + reader["SupplierID"];
                 }
                 return retString;
-               }
+            }
             catch (SqlException sept)
             {
                 return sept.Message;
-                Console.WriteLine(sept.Message);
             }
         }
     }
