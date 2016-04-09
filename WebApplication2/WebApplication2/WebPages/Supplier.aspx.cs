@@ -81,6 +81,10 @@ namespace WebApplication2
                 btnNewSupplier.Enabled = true;
                 btnEditSupplier.Enabled = false;
                 btnDeleteSupplier.Enabled = false;
+                txtAddress.Text = "";
+                txtName.Text = "";
+                txtNotes.Text = "";
+                txtPhoneNum.Text = "";
             }
 
 

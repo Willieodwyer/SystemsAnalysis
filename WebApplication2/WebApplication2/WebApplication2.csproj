@@ -66,10 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database.mdf" />
-    <Content Include="App_Data\Database1.mdf" />
-    <Content Include="App_Data\Database1_log.ldf">
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
@@ -85,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Business Layer\Cart.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
+    <Compile Include="Data Layer\SupplierMapper.cs" />
     <Compile Include="WebPages\CatalogueView.aspx.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
