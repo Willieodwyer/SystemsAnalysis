@@ -93,6 +93,7 @@
     <Compile Include="CatalogueView.aspx.designer.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Discount.cs" />
     <Compile Include="Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

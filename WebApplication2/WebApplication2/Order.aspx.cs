@@ -113,9 +113,11 @@ namespace WebApplication2
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
+            //Customer cust = (Customer) Session["CustomerOBJ"];
+            Discount disc = new Discount(1);
             if (newOrder != null)
             {
-                newOrder.AddProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text));
+                newOrder.AddProduct(Convert.ToInt32(lstProducts.SelectedValue), disc.applyDiscount(Convert.ToInt32(lstProducts.SelectedValue),Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)));
 
                 Response.Write("Product processed!!");
             }
