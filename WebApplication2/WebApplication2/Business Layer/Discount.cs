@@ -28,7 +28,7 @@ namespace WebApplication2
             {
                 string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\workarea\SystemsAnalysis-master\SystemsAnalysis-master\WebApplication2\WebApplication2\App_Data\Database2.mdf;Integrated Security=True";
                 SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Discount]";
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Discount]");
                 sqlConnection.Open();
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();

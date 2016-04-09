@@ -15,19 +15,10 @@ using System.Text;
 
 namespace WebApplication2
 {
-    public class Order
+    public class OrderMapper
     {
-        public int OrderID { get; set; }
-        public int CustomerID { get; set; }
-        public int ProductID { get; set; }
-        public int SupplierID { get; set; }
-        public String Address { get; set; }
-        public double Amount { get; set; }
-        public DateTime Date { get; set; }
-
-        public Order(int customerID, int productID, int supplierID, String address, double amount,
-            DateTime date)
-        {
+        public static string GetOrderID(Order ord){
+            int oID = 0;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT OrderID FROM [Order] WHERE OrderID = (SELECT MAX(OrderID) FROM [Order])", con);
@@ -37,29 +28,25 @@ namespace WebApplication2
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    OrderID = Convert.ToInt32(reader["OrderID"]);
-                    OrderID++;
+                    oID = Convert.ToInt32(reader["OrderID"]);
+                    oID++;
                 }
                 reader.Close();
+                ord.OrderID = oID;
 
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
+                return (sqlEx.Message);
             }
             finally
             {
                 con.Close();
             }
-            CustomerID = customerID;
-            ProductID = productID;
-            SupplierID = supplierID;
-            Address = address;
-            Amount = amount;
-            Date = date;
+            return "complete";
         }
 
-        public bool CreateOrder()
+        public static string CreateOrder(Order ord)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -68,63 +55,48 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (this.ProductID > 0)
+                if (ord.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
 
                     command.Parameters.Add("@OrderID", SqlDbType.Int);
-                    command.Parameters["@OrderID"].Value = this.OrderID;
+                    command.Parameters["@OrderID"].Value = ord.OrderID;
 
                     command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                    command.Parameters["@CustomerID"].Value = this.CustomerID;
+                    command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = this.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = this.Address;
+                    command.Parameters["@Address"].Value = ord.Address;
 
                     command.Parameters.Add("@Amount", SqlDbType.Float);
-                    command.Parameters["@Amount"].Value = this.Amount;
+                    command.Parameters["@Amount"].Value = ord.Amount;
 
                     command.Parameters.Add("@OrderDate", SqlDbType.DateTime);
-                    command.Parameters["@OrderDate"].Value = this.Date;
+                    command.Parameters["@OrderDate"].Value = ord.Date;
 
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
-                    command.Parameters["@SupplierID"].Value = this.SupplierID;
+                    command.Parameters["@SupplierID"].Value = ord.SupplierID;
 
                     command.ExecuteNonQuery();
                     connection.Close();
-                    return true;
+                    return "complete";
                 }
                 else
-                    return false;
+                    return "ProductID <= 0 for some reason - OrderMapper";
 
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
-                return false;
-            }
-            finally
-            {
-                connection.Close();
+                return (sqlEx.Message);
             }
         }
 
-        public void EditOrder(int orderID, int customerID, int productID, int supplierID, String address, double amount,
-            DateTime date)
+        public static string EditOrder(Order ord)
         {
-            //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
-            OrderID = orderID;
-            CustomerID = customerID;
-            ProductID = productID;
-            SupplierID = supplierID;
-            Address = address;
-            Amount = amount;
-            Date = date;
-
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
             String sql = "UPDATE [Order] SET CustomerID = @CustomerID, ProductID = @ProductID," +
@@ -133,45 +105,42 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (this.ProductID > 0)
+                if (ord.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
 
                     command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                    command.Parameters["@CustomerID"].Value = this.CustomerID;
+                    command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = this.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = this.Address;
+                    command.Parameters["@Address"].Value = ord.Address;
 
                     command.Parameters.Add("@Amount", SqlDbType.Float);
-                    command.Parameters["@Amount"].Value = this.Amount;
+                    command.Parameters["@Amount"].Value = ord.Amount;
 
                     command.Parameters.Add("@OrderDate", SqlDbType.DateTime);
-                    command.Parameters["@OrderDate"].Value = this.Date;
+                    command.Parameters["@OrderDate"].Value = ord.Date;
 
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
-                    command.Parameters["@SupplierID"].Value = this.SupplierID;
+                    command.Parameters["@SupplierID"].Value = ord.SupplierID;
 
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
-                
+
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
+                return (sqlEx.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
+            return "Edit Order COmpleted";
         }
 
-        public bool AddProduct(int pID, double amnt)
+        public static string AddProduct(Order ord, int pID, double amnt)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -180,53 +149,47 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (this.ProductID > 0)
+                if (ord.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
 
                     command.Parameters.Add("@OrderID", SqlDbType.Int);
-                    command.Parameters["@OrderID"].Value = this.OrderID;
+                    command.Parameters["@OrderID"].Value = ord.OrderID;
 
                     command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                    command.Parameters["@CustomerID"].Value = this.CustomerID;
+                    command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
                     command.Parameters["@ProductID"].Value = pID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = this.Address;
+                    command.Parameters["@Address"].Value = ord.Address;
 
                     command.Parameters.Add("@Amount", SqlDbType.Float);
                     command.Parameters["@Amount"].Value = amnt;
 
                     command.Parameters.Add("@OrderDate", SqlDbType.DateTime);
-                    command.Parameters["@OrderDate"].Value = this.Date;
+                    command.Parameters["@OrderDate"].Value = ord.Date;
 
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
-                    command.Parameters["@SupplierID"].Value = this.SupplierID;
+                    command.Parameters["@SupplierID"].Value = ord.SupplierID;
 
                     command.ExecuteNonQuery();
                     connection.Close();
-                    return true;
+                    return "Add product completed";
                 }
                 else
-                    return false;
+                    return "Add product - Prod ID < 1";
 
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
-                return false;
-            }
-            finally
-            {
-                connection.Close();
+                return (sqlEx.Message);
             }
         }
 
-
-        public bool RemoveProduct(int pID)
+        public static string RemoveProduct(Order ord, int pID)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -235,60 +198,28 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (this.ProductID > 0)
+                if (ord.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
 
                     command.Parameters.Add("@OrderID", SqlDbType.Int);
-                    command.Parameters["@OrderID"].Value = this.OrderID;
+                    command.Parameters["@OrderID"].Value = ord.OrderID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
                     command.Parameters["@ProductID"].Value = pID;
 
                     command.ExecuteNonQuery();
                     connection.Close();
-                    return true;
+                    return "remove product completed";
                 }
                 else
-                    return false;
+                    return "ProductID < 1 - remove product";
 
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        public string PrintOrder()
-        {
-            string retString = "";
-            try
-            {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Order] WHERE OrderID = " + this.OrderID, sqlConnection);
-                sqlConnection.Open();
-
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    //OrderID	CustomerID	ProductID	Address	Amount	OrderDate	SupplierID
-                    retString = retString + reader["OrderID"] + "," + reader["CustomerID"]
-                    + "," + reader["ProductID"] + "," + reader["Address"] + "," + reader["Amount"] + "," + reader["OrderDate"] + "," + reader["SupplierID"];
-                }
-                return retString;
-               }
-            catch (SqlException sept)
-            {
-                return sept.Message;
-                Console.WriteLine(sept.Message);
+                return (sqlEx.Message);
             }
         }
     }

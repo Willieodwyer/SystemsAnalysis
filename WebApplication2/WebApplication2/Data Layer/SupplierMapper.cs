@@ -15,16 +15,11 @@ using System.Text;
 
 namespace WebApplication2
 {
-    public class Supplier
+    public class SupplierMapper
     {
-        public int SupplierID { get; set; }
-        public String Name { get; set; }
-        public String Address { get; set; }
-        public double PhoneNum { get; set; }
-        public String Notes { get; set; }
-
-        public Supplier(String name, String address, double phoneNum, String notes)
+        public static string GetSupplierID(Supplier supp)
         {
+            int sID = 0;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT SupplierID FROM [Supplier] WHERE SupplierID = (SELECT MAX(SupplierID) FROM [Supplier])", con);
@@ -34,29 +29,23 @@ namespace WebApplication2
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    SupplierID = Convert.ToInt32(reader["SupplierID"]);
-                    SupplierID++;
+                    sID = Convert.ToInt32(reader["SupplierID"]);
+                    sID++;
                 }
+                supp.SupplierID = sID;
                 reader.Close();
-
+                con.Close();
+                return "Success";
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
+                return (sqlEx.Message);
             }
-            finally
-            {
-                con.Close();
-            }
-            Name = name;
-            Address = address;
-            PhoneNum = phoneNum;
-            Notes = notes;
         }
 
-        public string Add()
-        {
 
+        public static string Add(Supplier supp)
+        {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             String sql = "INSERT INTO [Supplier] VALUES(@SupplierID ,@Name, @Address, @PhoneNum, @Notes)";
 
@@ -67,19 +56,19 @@ namespace WebApplication2
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 command.Parameters.Add("@SupplierID", SqlDbType.Int);
-                command.Parameters["@SupplierID"].Value = this.SupplierID;
+                command.Parameters["@SupplierID"].Value = supp.SupplierID;
 
                 command.Parameters.Add("@Name", SqlDbType.NVarChar);
-                command.Parameters["@Name"].Value = this.Name;
+                command.Parameters["@Name"].Value = supp.Name;
 
                 command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                command.Parameters["@Address"].Value = this.Address;
+                command.Parameters["@Address"].Value = supp.Address;
 
                 command.Parameters.Add("@PhoneNum", SqlDbType.Int);
-                command.Parameters["@PhoneNum"].Value = this.PhoneNum;
+                command.Parameters["@PhoneNum"].Value = supp.PhoneNum;
 
                 command.Parameters.Add("@Notes", SqlDbType.NVarChar);
-                command.Parameters["@Notes"].Value = this.Notes;
+                command.Parameters["@Notes"].Value = supp.Notes;
 
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -89,10 +78,6 @@ namespace WebApplication2
             {
                 Console.WriteLine(sqlEx.Message);
                 return sqlEx.Message;
-            }
-            finally
-            {
-                connection.Close();
             }
         }
 
@@ -126,19 +111,15 @@ namespace WebApplication2
                 Console.WriteLine(sqlEx.Message);
                 return sqlEx.Message;
             }
-            finally
-            {
-                connection.Close();
-            }
         }
 
-        public string Edit(int suppiD, String name, String address, int phoneNum, String notes)
+        public static string Edit(Supplier supp,int suppiD, String name, String address, int phoneNum, String notes)
         {
             //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
-            Name = name;
-            Address = address;
-            PhoneNum = phoneNum;
-            Notes = notes;
+            supp.Name = name;
+            supp.Address = address;
+            supp.PhoneNum = phoneNum;
+            supp.Notes = notes;
 
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             //[Supplier] VALUES(@SupplierID ,@Name, @Address, @PhoneNum, @Notes)"
@@ -147,22 +128,22 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (this.SupplierID > 0)
+                if (supp.SupplierID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
 
                     command.Parameters.Add("@Name", SqlDbType.NVarChar);
-                    command.Parameters["@Name"].Value = this.Name;
+                    command.Parameters["@Name"].Value = supp.Name;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
-                    command.Parameters["@Address"].Value = this.Address;
+                    command.Parameters["@Address"].Value = supp.Address;
 
                     command.Parameters.Add("@PhoneNumber", SqlDbType.Int);
-                    command.Parameters["@PhoneNumber"].Value = this.PhoneNum;
+                    command.Parameters["@PhoneNumber"].Value = supp.PhoneNum;
 
                     command.Parameters.Add("@Notes", SqlDbType.NVarChar);
-                    command.Parameters["@Notes"].Value = this.Notes;
+                    command.Parameters["@Notes"].Value = supp.Notes;
 
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
                     command.Parameters["@SupplierID"].Value = suppiD;
@@ -171,14 +152,14 @@ namespace WebApplication2
                     connection.Close();
                     return "Edit complete";
                 }
-                
+                else
+                    return "SupplierID < 1";
             }
             catch (SqlException sqlEx)
             {
                 Console.WriteLine(sqlEx.Message);
                 return sqlEx.Message;
             }
-            return "Something really really went wrong";
         }
     }
 }

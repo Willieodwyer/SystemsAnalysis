@@ -66,80 +66,77 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database.mdf" />
-    <Content Include="App_Data\Database1.mdf" />
-    <Content Include="App_Data\Database1_log.ldf">
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="Cart_cs_functionality.txt" />
-    <Content Include="CatalogueView.aspx" />
-    <Content Include="Order.aspx" />
-    <Content Include="OrderView.aspx" />
-    <Content Include="Register User.aspx" />
-    <Content Include="SupplierView.aspx" />
+    <Content Include="WebPages\CatalogueView.aspx" />
+    <Content Include="WebPages\Order.aspx" />
+    <Content Include="WebPages\OrderView.aspx" />
+    <Content Include="WebPages\Register User.aspx" />
+    <Content Include="WebPages\SupplierView.aspx" />
     <Content Include="Web.config" />
-    <Content Include="HomePage.aspx" />
-    <Content Include="Supplier.aspx" />
+    <Content Include="WebPages\HomePage.aspx" />
+    <Content Include="WebPages\Supplier.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs" />
-    <Compile Include="Catalogue.cs" />
-    <Compile Include="CatalogueView.aspx.cs">
+    <Compile Include="Business Layer\Cart.cs" />
+    <Compile Include="Business Layer\Catalogue.cs" />
+    <Compile Include="Data Layer\SupplierMapper.cs" />
+    <Compile Include="WebPages\CatalogueView.aspx.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CatalogueView.aspx.designer.cs">
+    <Compile Include="WebPages\CatalogueView.aspx.designer.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Discount.cs" />
-    <Compile Include="Order.aspx.cs">
+    <Compile Include="Business Layer\Discount.cs" />
+    <Compile Include="WebPages\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order.aspx.designer.cs">
+    <Compile Include="WebPages\Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OrderView.aspx.cs">
+    <Compile Include="Data Layer\OrderMapper.cs" />
+    <Compile Include="WebPages\OrderView.aspx.cs">
       <DependentUpon>OrderView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="OrderView.aspx.designer.cs">
+    <Compile Include="WebPages\OrderView.aspx.designer.cs">
       <DependentUpon>OrderView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Register User.aspx.cs">
+    <Compile Include="WebPages\Register User.aspx.cs">
       <DependentUpon>Register User.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Register User.aspx.designer.cs">
+    <Compile Include="WebPages\Register User.aspx.designer.cs">
       <DependentUpon>Register User.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Stock.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Supplier.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="Business Layer\Stock.cs" />
+    <Compile Include="Business Layer\Order.cs" />
+    <Compile Include="Business Layer\Supplier.cs" />
+    <Compile Include="Business Layer\Product.cs" />
+    <Compile Include="Business Layer\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HomePage.aspx.cs">
+    <Compile Include="WebPages\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomePage.aspx.designer.cs">
+    <Compile Include="WebPages\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Supplier.aspx.cs">
+    <Compile Include="WebPages\Supplier.aspx.cs">
       <DependentUpon>Supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Supplier.aspx.designer.cs">
+    <Compile Include="WebPages\Supplier.aspx.designer.cs">
       <DependentUpon>Supplier.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SupplierView.aspx.cs">
+    <Compile Include="WebPages\SupplierView.aspx.cs">
       <DependentUpon>SupplierView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupplierView.aspx.designer.cs">
+    <Compile Include="WebPages\SupplierView.aspx.designer.cs">
       <DependentUpon>SupplierView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test.aspx.designer.cs" />

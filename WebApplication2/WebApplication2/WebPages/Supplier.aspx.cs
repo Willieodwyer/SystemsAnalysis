@@ -13,45 +13,33 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
+
 namespace WebApplication2
 {
-    public partial class Order1 : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
-        static Order newOrder;
-        double price;
+
+        static Supplier newSupp;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
                 FillProductList();
+                txtNotes.Text = "";
             }
         }
 
-        protected void btnOrder_Click(object sender, EventArgs e)
-        {
-            if (IsValid)
-            {
-                newOrder = new Order(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land", 
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text), DateTime.Now);
-                newOrder.CreateOrder();
-
-                Response.Write("Order processed!!");
-                btnOrder.Enabled = false;
-                btnAddOrder.Enabled = true;
-                btnViewOrder.Enabled = true;
-            }
-
-        }
 
         private void FillProductList()
         {
-            lstProducts.Items.Clear();
+            lstSuppliers.Items.Clear();
             ListItem baseItem = new ListItem();
-            baseItem.Text = "Please select a product";
+            baseItem.Text = "New Supplier";
             baseItem.Value = "0";
-            lstProducts.Items.Add(baseItem);
+            lstSuppliers.Items.Add(baseItem);
 
-            string selectSQL = "SELECT ProductID FROM [Products]";
+            string selectSQL = "SELECT SupplierID FROM [Supplier]";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand cmd = new SqlCommand(selectSQL, con);
@@ -64,9 +52,9 @@ namespace WebApplication2
                 while (reader.Read())
                 {
                     ListItem newItem = new ListItem();
-                    newItem.Text = "Product:" + reader["ProductID"];
-                    newItem.Value = reader["ProductID"].ToString();
-                    lstProducts.Items.Add(newItem);
+                    newItem.Text = "Supplier ID:" + reader["SupplierID"];
+                    newItem.Value = reader["SupplierID"].ToString();
+                    lstSuppliers.Items.Add(newItem);
                 }
                 reader.Close();
             }
@@ -82,7 +70,25 @@ namespace WebApplication2
 
         protected void lstProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectSQL = "SELECT Price FROM [Products] WHERE ProductID = " + lstProducts.SelectedItem.Value;
+            if (Convert.ToInt32(lstSuppliers.SelectedValue) > 0)
+            {
+                btnNewSupplier.Enabled = false;
+                btnEditSupplier.Enabled = true;
+                btnDeleteSupplier.Enabled = true;
+            }
+            else
+            {
+                btnNewSupplier.Enabled = true;
+                btnEditSupplier.Enabled = false;
+                btnDeleteSupplier.Enabled = false;
+                txtAddress.Text = "";
+                txtName.Text = "";
+                txtNotes.Text = "";
+                txtPhoneNum.Text = "";
+            }
+
+
+            string selectSQL = "SELECT * FROM [Supplier] WHERE SupplierID = " + lstSuppliers.SelectedItem.Value;
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand cmd = new SqlCommand(selectSQL, con);
@@ -94,8 +100,10 @@ namespace WebApplication2
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    txtPrice.Text = reader["Price"].ToString();
-                    price = Convert.ToDouble(txtPrice.Text);
+                    txtName.Text = reader["Name"].ToString();
+                    txtAddress.Text = reader["Address"].ToString();
+                    txtPhoneNum.Text = reader["PhoneNumber"].ToString();
+                    txtNotes.Text = reader["Notes"].ToString();
                 }
                 reader.Close();
 
@@ -111,42 +119,26 @@ namespace WebApplication2
 
         }
 
-        protected void btnAddProduct_Click(object sender, EventArgs e)
+        protected void btnSupplier_Click(object sender, EventArgs e)
         {
-            //Customer cust = (Customer) Session["CustomerOBJ"];
-            Discount disc = new Discount(1);
-            if (newOrder != null)
-            {
-                newOrder.AddProduct(Convert.ToInt32(lstProducts.SelectedValue), disc.applyDiscount(Convert.ToInt32(lstProducts.SelectedValue),Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)));
-
-                Response.Write("Product processed!!");
-            }
-            else
-                Response.Write("new order is null????");
+            newSupp = new Supplier(txtName.Text,txtAddress.Text,Convert.ToInt32(txtPhoneNum.Text),txtNotes.Text);
+            Response.Write(newSupp.Add());
         }
 
-        protected void btnViewOrder_Click(object sender, EventArgs e)
+        protected void btnEditSupplier_Click(object sender, EventArgs e)
         {
-            Session["ID"] = newOrder.OrderID;
-            Session["OrderOBJ"] = newOrder;
-            Response.Redirect("OrderView.aspx");
+            newSupp = new Supplier(txtName.Text, txtAddress.Text, Convert.ToInt32(txtPhoneNum.Text), txtNotes.Text);
+            Response.Write(newSupp.Edit(Convert.ToInt32(lstSuppliers.SelectedValue), txtName.Text, txtAddress.Text, Convert.ToInt32(txtPhoneNum.Text), txtNotes.Text));
         }
 
-        protected void txtEmail_TextChanged(object sender, EventArgs e)
+        protected void btnViewSuppliers_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("SupplierView.aspx");
         }
 
-        protected void txtQuantity_TextChanged(object sender, EventArgs e)
+        protected void btnDeleteSupplier_Click(object sender, EventArgs e)
         {
-
+            Response.Write(Supplier.Delete(Convert.ToInt32(lstSuppliers.SelectedValue)));
         }
-
-        protected void txtProduct_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
-
 }
