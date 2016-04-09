@@ -171,7 +171,7 @@ namespace WebApplication2
             }
         }
 
-        public bool AddProduct(int pID, int amnt)
+        public bool AddProduct(int pID, double amnt)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
