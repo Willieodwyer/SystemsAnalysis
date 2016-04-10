@@ -17,7 +17,7 @@ namespace WebApplication2
 {
     public partial class Order1 : System.Web.UI.Page
     {
-        static StandardOrder newOrder;
+        static Order newOrder;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
