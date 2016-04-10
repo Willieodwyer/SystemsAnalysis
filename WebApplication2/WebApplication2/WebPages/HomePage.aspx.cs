@@ -19,8 +19,9 @@ namespace WebApplication2
         }
 
         protected bool checkDetails(string email, string password)
-        {                                                //Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Users\werl\Documents\Visual Studio 2013\Projects\WebApplication2\WebApplication2\App_Data\Database.mdf";Integrated Security=True
+        {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            //SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlDataReader reader;
             bool valid = false;
             String[] parseID = email.Split('@');

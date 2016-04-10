@@ -7,14 +7,12 @@ using System.Web;
 
 namespace WebApplication2
 {
-    public class Cart
+    public class CartMapper
     {
-        public int CustomerID { get; set; }
-        public int CartID { get; set; }
 
-
-        public Cart(int customerID, int cartID)
+        public static string getCartID(Cart cart)
         {
+            int cartID = 0;
             String sql = "SELECT MAX(CartID) as MAX FROM [ShoppingCart]";
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand command = new SqlCommand(sql, connection);
@@ -30,21 +28,22 @@ namespace WebApplication2
                     cartID = reader.GetInt32(reader.GetOrdinal("MAX"));
                 }
                 cartID++;
+                cart.CartID = cartID;
                 reader.Close();
+                return "Complete";
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
+                return (sqlEx.Message);
             }
             finally
             {
                 connection.Close();
             }
-            CustomerID = customerID;
-            CartID = cartID;
+
         }
 
-        public bool CreateCart()
+        public static string CreateCart(Cart cart)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -57,30 +56,51 @@ namespace WebApplication2
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 command.Parameters.Add("@CartID", SqlDbType.Int);
-                command.Parameters["@CartID"].Value = this.CartID;
+                command.Parameters["@CartID"].Value = cart.CartID;
 
                 command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                command.Parameters["@CustomerID"].Value = this.CustomerID;
+                command.Parameters["@CustomerID"].Value = cart.CustomerID;
 
                 command.ExecuteNonQuery();
                 connection.Close();
-                return true;
+                return "Complete";
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx);
-                return false;
+                return(sqlEx.Message);
             }
         }
 
 
-        public void EditCart(int customerID, int cartID)
+        public static string EditCart(Cart cart)
         {
-            CustomerID = customerID;
-            CartID = cartID;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+
+            String sql = "UPDATE[ShoppingCart] SET CustomerID = @CustomerID, ProductID = NULL, Quantity = NULL, CartID = @CartID";
+
+            try
+            {
+
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@CartID", SqlDbType.Int);
+                command.Parameters["@CartID"].Value = cart.CartID;
+
+                command.Parameters.Add("@CustomerID", SqlDbType.Int);
+                command.Parameters["@CustomerID"].Value = cart.CustomerID;
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return "Complete";
+            }
+            catch (SqlException sqlEx)
+            {
+                return (sqlEx.Message);
+            }
         }
 
-        public bool AddToCart(int productID, int quantity)
+        public static string AddToCart(Cart cart, int productID, int quantity)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -92,23 +112,22 @@ namespace WebApplication2
                 SqlCommand command = new SqlCommand(sql, connection);
 
 
-                command.Parameters.Add("@CustomerID", SqlDbType.Int).Value = this.CustomerID;
+                command.Parameters.Add("@CustomerID", SqlDbType.Int).Value = cart.CustomerID;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = productID;
 
                 command.Parameters.Add("@Quantity", SqlDbType.Int).Value = quantity;
 
-                command.Parameters.Add("@CartID", SqlDbType.Int).Value = this.CartID;
+                command.Parameters.Add("@CartID", SqlDbType.Int).Value = cart.CartID;
 
                 command.ExecuteNonQuery();
                 connection.Close();
 
-                return true;
+                return "Complete";
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
-                return false;
+                return (sqlEx.Message);
             }
             finally
             {
@@ -116,7 +135,7 @@ namespace WebApplication2
             }
         }
 
-        public void RemoveFromCart(int productID)
+        public static string RemoveFromCart(Cart cart, int productID)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -126,7 +145,7 @@ namespace WebApplication2
             try
             {
                 command.Parameters.Add("@CustomerID", SqlDbType.Int);
-                command.Parameters["@CustomerID"].Value = this.CustomerID;
+                command.Parameters["@CustomerID"].Value = cart.CustomerID;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int);
                 command.Parameters["@ProductID"].Value = productID;
@@ -135,10 +154,11 @@ namespace WebApplication2
                 command.ExecuteNonQuery();
 
                 connection.Close();
+                return "Complete";
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine(sqlEx.Message);
+                return(sqlEx.Message);
             }
             finally
             {
@@ -146,5 +166,5 @@ namespace WebApplication2
             }
         }
     }
-        
+
 }
