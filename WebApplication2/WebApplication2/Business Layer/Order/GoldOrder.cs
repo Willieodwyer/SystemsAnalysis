@@ -12,10 +12,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
-
 namespace WebApplication2
 {
-    public class StandardOrder : OrderComponent
+    public class GoldOrder : Order
     {
         override public int OrderID { get; set; }
         override public int CustomerID { get; set; }
@@ -25,7 +24,7 @@ namespace WebApplication2
         override public double Amount { get; set; }
         override public DateTime Date { get; set; }
 
-        public StandardOrder(int customerID, int productID, int supplierID, String address, double amount,
+        public GoldOrder(int customerID, int productID, int supplierID, String address, double amount,
             DateTime date)
         {
             OrderMapper.GetOrderID(this);
@@ -33,7 +32,7 @@ namespace WebApplication2
             ProductID = productID;
             SupplierID = supplierID;
             Address = address;
-            Amount = amount;
+            Amount = amount * 0.80;
             Date = date;
         }
         

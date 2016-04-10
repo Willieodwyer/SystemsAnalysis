@@ -17,7 +17,7 @@ namespace WebApplication2
 {
     public class OrderMapper
     {
-        public static string GetOrderID(OrderComponent ord){
+        public static string GetOrderID(Order ord){
             int oID = 0;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlDataReader reader;
@@ -46,7 +46,7 @@ namespace WebApplication2
             return "complete";
         }
 
-        public static string CreateOrder(OrderComponent ord)
+        public static string CreateOrder(Order ord)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -95,7 +95,7 @@ namespace WebApplication2
             }
         }
 
-        public static string EditOrder(OrderComponent ord)
+        public static string EditOrder(Order ord)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -140,7 +140,7 @@ namespace WebApplication2
             return "Edit Order COmpleted";
         }
 
-        public static string AddProduct(OrderComponent ord, int pID, double amnt)
+        public static string AddProduct(Order ord, int pID, double amnt)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
@@ -189,7 +189,7 @@ namespace WebApplication2
             }
         }
 
-        public static string RemoveProduct(OrderComponent ord, int pID)
+        public static string RemoveProduct(Order ord, int pID)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 

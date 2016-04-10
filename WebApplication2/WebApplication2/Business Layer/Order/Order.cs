@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Web.Configuration;
+using System.Text;
 namespace WebApplication2
 {
-    public abstract class OrderComponent
+    public abstract class Order
     {
         public abstract int OrderID { get; set; }
         public abstract int CustomerID { get; set; }
