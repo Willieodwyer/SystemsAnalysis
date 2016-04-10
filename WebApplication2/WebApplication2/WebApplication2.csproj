@@ -81,7 +81,10 @@
   <ItemGroup>
     <Compile Include="Business Layer\Cart.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
+    <Compile Include="Business Layer\Order\GoldOrder.cs" />
+    <Compile Include="Business Layer\Order\SilverOrder.cs" />
     <Compile Include="Data Layer\SupplierMapper.cs" />
+    <Compile Include="Business Layer\Order\Order.cs" />
     <Compile Include="WebPages\CatalogueView.aspx.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -113,7 +116,7 @@
       <DependentUpon>Register User.aspx</DependentUpon>
     </Compile>
     <Compile Include="Business Layer\Stock.cs" />
-    <Compile Include="Business Layer\Order.cs" />
+    <Compile Include="Business Layer\Order\StandardOrder.cs" />
     <Compile Include="Business Layer\Supplier.cs" />
     <Compile Include="Business Layer\Product.cs" />
     <Compile Include="Business Layer\Customer.cs" />
