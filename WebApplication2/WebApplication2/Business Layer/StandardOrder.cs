@@ -15,17 +15,17 @@ using System.Text;
 
 namespace WebApplication2
 {
-    public class Order
+    public class StandardOrder : OrderComponent
     {
-        public int OrderID { get; set; }
-        public int CustomerID { get; set; }
-        public int ProductID { get; set; }
-        public int SupplierID { get; set; }
-        public String Address { get; set; }
-        public double Amount { get; set; }
-        public DateTime Date { get; set; }
+        override public int OrderID { get; set; }
+        override public int CustomerID { get; set; }
+        override public int ProductID { get; set; }
+        override public int SupplierID { get; set; }
+        override public String Address { get; set; }
+        override public double Amount { get; set; }
+        override public DateTime Date { get; set; }
 
-        public Order(int customerID, int productID, int supplierID, String address, double amount,
+        public StandardOrder(int customerID, int productID, int supplierID, String address, double amount,
             DateTime date)
         {
             OrderMapper.GetOrderID(this);
@@ -36,13 +36,13 @@ namespace WebApplication2
             Amount = amount;
             Date = date;
         }
-
-        public string CreateOrder()
+        
+        override public string CreateOrder()
         {
             return OrderMapper.CreateOrder(this);
         }
 
-        public string EditOrder(int orderID, int customerID, int productID, int supplierID, String address, double amount,
+        override public string EditOrder(int orderID, int customerID, int productID, int supplierID, String address, double amount,
             DateTime date)
         {
             //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
@@ -57,18 +57,18 @@ namespace WebApplication2
             
         }
 
-        public string AddProduct(int pID, double amnt)
+        override public string AddProduct(int pID, double amnt)
         {
             return OrderMapper.AddProduct(this, pID, amnt);
         }
 
 
-        public string RemoveProduct(int pID)
+        override public string RemoveProduct(int pID)
         {
             return OrderMapper.RemoveProduct(this, pID);
         }
 
-        public string PrintOrder()
+        override public string PrintOrder()
         {
             string retString = "";
             try

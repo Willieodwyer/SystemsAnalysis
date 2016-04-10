@@ -17,7 +17,7 @@ namespace WebApplication2
 {
     public partial class Order1 : System.Web.UI.Page
     {
-        static Order newOrder;
+        static StandardOrder newOrder;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace WebApplication2
         {
             if (IsValid)
             {
-                newOrder = new Order(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land", 
+                newOrder = new StandardOrder(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land", 
                     Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text), DateTime.Now);
                 newOrder.CreateOrder();
 
