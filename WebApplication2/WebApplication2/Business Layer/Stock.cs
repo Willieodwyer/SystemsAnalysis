@@ -1,5 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +16,16 @@ namespace WebApplication2
         {
             ProductID = productID;
             Quantity = quantity;
+        }
+
+        public void addStock(int ProductID, int Quantity)
+        {
+            StockMapper.addStockDB(ProductID, Quantity);
+        }
+
+        public void updateStock(int ProductID,int Quantity)
+        {
+            StockMapper.updateStockBD(ProductID, Quantity);
         }
     }
 }
