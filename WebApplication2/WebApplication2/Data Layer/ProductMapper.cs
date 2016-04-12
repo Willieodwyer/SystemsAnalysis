@@ -11,11 +11,11 @@ namespace WebApplication2
     {
         public static void AddProductDB(Product p)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Windows 8\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
 
-           try
-           {
+            try
+            {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sql, connection);
 
@@ -27,7 +27,7 @@ namespace WebApplication2
                 connection.Close();
                 Console.WriteLine("Success");
             }
-            catch(SqlException sqlEx)
+            catch (SqlException sqlEx)
             {
                 Console.WriteLine(sqlEx.Message);
             }
@@ -39,11 +39,11 @@ namespace WebApplication2
 
         public static void editProductDB(string oldType, string manufacturer, string namebox, float Price)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Windows 8\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             String sql = "UPDATE [Products] SET Price = @Price, Type = @newType WHERE Type = @oldType";
             String newType = manufacturer + " " + namebox;
-            
-            try 
+
+            try
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sql, connection);
@@ -61,6 +61,41 @@ namespace WebApplication2
             catch (SqlException sqlEx)
             {
                 Console.WriteLine(sqlEx.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static double getProductPrice(int pID)
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            String sql = "SELECT Price FROM [Products] WHERE ProductID = @ProductID";
+            double price = 0.0;
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+
+            try
+            {
+                connection.Open();
+
+                command.Parameters.Add("@ProductID", SqlDbType.Int);
+                command.Parameters["@ProductID"].Value = pID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    price = reader.GetDouble(0);
+                }
+
+                reader.Close();
+                return price;
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx.Message);
+                return 0.0;
             }
             finally
             {
