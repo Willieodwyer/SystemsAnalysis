@@ -19,7 +19,7 @@ namespace WebApplication2
         public Product(String manufacturer, String name, float price)
         {
             //ProductID = productID;
-            Manufacturer = manufacturer; 
+            Manufacturer = manufacturer;
             Name = name;
             Type = Manufacturer + " " + Name; //type is manufacturer + name
             Price = price;
@@ -27,18 +27,23 @@ namespace WebApplication2
 
         public void addProduct()
         {
-           ProductMapper.AddProductDB(this);
+            ProductMapper.AddProductDB(this);
         }
 
 
-        public void editProduct(string oldType,string manufacturer,string namebox,float Price)
+        public void editProduct(string oldType, string manufacturer, string namebox, float price)
         {
-          
+            ProductMapper.editProductDB(oldType, manufacturer, namebox, price);
         }
 
         public void selectProduct()
         {
 
+        }
+
+        public static double getProductPrice(int pID)
+        {
+            return ProductMapper.getProductPrice(pID);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,7 +15,7 @@ namespace WebApplication2
         {
             int cartID = 0;
             String sql = "SELECT MAX(CartID) as MAX FROM [ShoppingCart]";
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader;
             command = new SqlCommand(sql, connection);
@@ -45,7 +46,7 @@ namespace WebApplication2
 
         public static string CreateCart(Cart cart)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
             String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, NULL, NULL, @CartID)";
 
@@ -67,14 +68,14 @@ namespace WebApplication2
             }
             catch (SqlException sqlEx)
             {
-                return(sqlEx.Message);
+                return (sqlEx.Message);
             }
         }
 
 
         public static string EditCart(Cart cart)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
             String sql = "UPDATE[ShoppingCart] SET CustomerID = @CustomerID, ProductID = NULL, Quantity = NULL, CartID = @CartID";
 
@@ -102,9 +103,9 @@ namespace WebApplication2
 
         public static string AddToCart(Cart cart, int productID, int quantity)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
-            String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, @ProductID, @Quantity, @CartID)";
+            String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, @CartID, @ProductID, @Quantity)";
 
             try
             {
@@ -137,7 +138,7 @@ namespace WebApplication2
 
         public static string RemoveFromCart(Cart cart, int productID)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
 
             String sql = "DELETE FROM [ShoppingCart] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
@@ -158,13 +159,54 @@ namespace WebApplication2
             }
             catch (SqlException sqlEx)
             {
-                return(sqlEx.Message);
+                return (sqlEx.Message);
             }
             finally
             {
                 connection.Close();
             }
         }
-    }
 
+        public static double getTotal(Cart cart)
+        {
+            double total = 0.0;
+            int cartID = cart.CartID;
+            List<int> pIDs = new List<int>();
+            List<int> quantities = new List<int>();
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            String sql = "SELECT ProductID, Quantity FROM [ShoppingCart] WHERE CartID = @CartID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+
+
+            connection.Open();
+
+            command.Parameters.Add("@CartID", SqlDbType.Int);
+            command.Parameters["@CartID"].Value = cart.CartID;
+
+            reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    pIDs.Add(reader.GetInt32(0));
+                    quantities.Add(reader.GetInt32(1));
+                }
+                reader.NextResult();
+            }
+
+
+            connection.Close();
+
+
+            for (int i = 0; i < pIDs.Count; i++)
+            {
+                total += Product.getProductPrice(pIDs[i]) * quantities[i];
+            }
+
+            return total;
+        }
+
+    }
 }

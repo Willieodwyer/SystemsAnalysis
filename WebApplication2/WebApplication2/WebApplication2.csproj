@@ -69,6 +69,7 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="WebPages\CartView.aspx" />
     <Content Include="WebPages\CatalogueView.aspx" />
     <Content Include="WebPages\Order.aspx" />
     <Content Include="WebPages\OrderView.aspx" />
@@ -79,12 +80,27 @@
     <Content Include="WebPages\Supplier.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business Layer\Cart.cs" />
+    <Compile Include="Business Layer\Cart\Cart.cs" />
+    <Compile Include="Business Layer\Cart\CartDecorator.cs" />
+    <Compile Include="Business Layer\Cart\ICart.cs" />
+    <Compile Include="Business Layer\Cart\WithAccessory.cs" />
+    <Compile Include="Business Layer\Cart\WithCase.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
     <Compile Include="Business Layer\Order\GoldOrder.cs" />
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
+    <Compile Include="Data Layer\CartMapper.cs" />
+    <Compile Include="Data Layer\CustomerMapper.cs" />
+    <Compile Include="Data Layer\ProductMapper.cs" />
+    <Compile Include="Data Layer\StockMapper.cs" />
     <Compile Include="Data Layer\SupplierMapper.cs" />
     <Compile Include="Business Layer\Order\Order.cs" />
+    <Compile Include="WebPages\CartView.aspx.cs">
+      <DependentUpon>CartView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\CartView.aspx.designer.cs">
+      <DependentUpon>CartView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPages\CatalogueView.aspx.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
