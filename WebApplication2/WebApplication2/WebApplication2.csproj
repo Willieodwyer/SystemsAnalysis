@@ -57,6 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
+    <Content Include="ClassDiagram3.cd" />
+    <Content Include="ClassDiagram4.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -83,6 +87,8 @@
     <Compile Include="Business Layer\Catalogue.cs" />
     <Compile Include="Business Layer\Order\GoldOrder.cs" />
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
+    <Compile Include="Data Layer\CartMapper.cs" />
+    <Compile Include="Data Layer\CustomerMapper.cs" />
     <Compile Include="Data Layer\SupplierMapper.cs" />
     <Compile Include="Business Layer\Order\Order.cs" />
     <Compile Include="WebPages\CatalogueView.aspx.cs">

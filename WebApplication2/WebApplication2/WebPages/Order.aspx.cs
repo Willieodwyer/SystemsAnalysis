@@ -18,6 +18,7 @@ namespace WebApplication2
     public partial class Order1 : System.Web.UI.Page
     {
         static Order newOrder;
+        static List<Product> productList = new List<Product>();
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +32,7 @@ namespace WebApplication2
         {
             if (IsValid)
             {
-                newOrder = new StandardOrder(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land", 
+                newOrder = new StandardOrder(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land",
                     Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text), DateTime.Now);
                 newOrder.CreateOrder();
 
@@ -51,7 +52,7 @@ namespace WebApplication2
             baseItem.Value = "0";
             lstProducts.Items.Add(baseItem);
 
-            string selectSQL = "SELECT ProductID FROM [Products]";
+            string selectSQL = "SELECT * FROM [Products]";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand cmd = new SqlCommand(selectSQL, con);
@@ -64,9 +65,11 @@ namespace WebApplication2
                 while (reader.Read())
                 {
                     ListItem newItem = new ListItem();
-                    newItem.Text = "Product:" + reader["ProductID"];
-                    newItem.Value = reader["ProductID"].ToString();
+                    newItem.Text = "Product:" + reader["Type"];
+                    newItem.Value = reader["Price"].ToString();
                     lstProducts.Items.Add(newItem);
+                    Product localProd = new Product(reader["Type"].ToString(), reader["Name"].ToString(), Convert.ToDouble(reader["Price"]));
+                    productList.Add(localProd);
                 }
                 reader.Close();
             }
