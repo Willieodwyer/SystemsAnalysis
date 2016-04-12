@@ -10,35 +10,48 @@ namespace WebApplication2
 {
     public class Product
     {
-        //public int ProductID { get; set; }
-        public String Manufacturer { get; set; }
-        public String Name { get; set; }
-        public float Price { get; set; }
-        public String Type { get; set; }
+        public int ProductID { get; set; }
+        public double Price { get; set; }
+        public string Type { get; set; }
+        public int SupplierID { get; set; }
+        public string Name { get; set; }
 
-        public Product(String manufacturer, String name, float price)
+        public Product(int productID, double price, string type, int supplierID, string name)
         {
-            //ProductID = productID;
-            Manufacturer = manufacturer; 
-            Name = name;
-            Type = Manufacturer + " " + Name; //type is manufacturer + name
+            ProductID = productID;
             Price = price;
+            Type = type;
+            SupplierID = supplierID;
+            Name = name;
+        }
+
+        public Product(double price,string type, int supplierID, string name)
+        {
+            ProductMapper.GetProductID(this);
+            Price = price;
+            Type = type;
+            SupplierID = supplierID;
+            Name = name;
         }
 
         public void addProduct()
         {
-           ProductMapper.AddProductDB(this);
+           ProductMapper.AddProduct(this);
         }
 
 
-        public void editProduct(string oldType,string manufacturer,string namebox,float Price)
+        public void editProduct(double price, string type, int supplierID, string name)
         {
-          
+            Price = price;
+            Type = type;
+            SupplierID = supplierID;
+            Name = name;
+            ProductMapper.editProduct(this);
         }
 
-        public void selectProduct()
+        public Product selectProduct(int pID)
         {
-
+            return ProductMapper.SelectProduct(pID);
         }
     }
 }

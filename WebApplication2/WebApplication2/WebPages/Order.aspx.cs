@@ -68,8 +68,8 @@ namespace WebApplication2
                     newItem.Text = "Product:" + reader["Type"];
                     newItem.Value = reader["Price"].ToString();
                     lstProducts.Items.Add(newItem);
-                    Product localProd = new Product(reader["Type"].ToString(), reader["Name"].ToString(), Convert.ToDouble(reader["Price"]));
-                    productList.Add(localProd);
+                    //Product localProd = new Product(reader["Type"].ToString(), reader["Name"].ToString(), Convert.ToDouble(reader["Price"]));
+                    //productList.Add(localProd);
                 }
                 reader.Close();
             }

@@ -57,10 +57,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClassDiagram1.cd" />
-    <Content Include="ClassDiagram2.cd" />
-    <Content Include="ClassDiagram3.cd" />
-    <Content Include="ClassDiagram4.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -76,6 +72,7 @@
     <Content Include="WebPages\CatalogueView.aspx" />
     <Content Include="WebPages\Order.aspx" />
     <Content Include="WebPages\OrderView.aspx" />
+    <Content Include="WebPages\Product.aspx" />
     <Content Include="WebPages\Register User.aspx" />
     <Content Include="WebPages\SupplierView.aspx" />
     <Content Include="Web.config" />
@@ -89,6 +86,8 @@
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
     <Compile Include="Data Layer\CartMapper.cs" />
     <Compile Include="Data Layer\CustomerMapper.cs" />
+    <Compile Include="Data Layer\ProductMapper.cs" />
+    <Compile Include="Data Layer\StockMapper.cs" />
     <Compile Include="Data Layer\SupplierMapper.cs" />
     <Compile Include="Business Layer\Order\Order.cs" />
     <Compile Include="WebPages\CatalogueView.aspx.cs">
@@ -113,6 +112,13 @@
     </Compile>
     <Compile Include="WebPages\OrderView.aspx.designer.cs">
       <DependentUpon>OrderView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\Register User.aspx.cs">
       <DependentUpon>Register User.aspx</DependentUpon>
