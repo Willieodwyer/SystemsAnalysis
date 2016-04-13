@@ -74,6 +74,7 @@
     <Content Include="WebPages\CatalogueView.aspx" />
     <Content Include="WebPages\Order.aspx" />
     <Content Include="WebPages\OrderView.aspx" />
+    <Content Include="WebPages\Product.aspx" />
     <Content Include="WebPages\Register User.aspx" />
     <Content Include="WebPages\SupplierView.aspx" />
     <Content Include="Web.config" />
@@ -124,6 +125,13 @@
     </Compile>
     <Compile Include="WebPages\OrderView.aspx.designer.cs">
       <DependentUpon>OrderView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\Register User.aspx.cs">
       <DependentUpon>Register User.aspx</DependentUpon>
