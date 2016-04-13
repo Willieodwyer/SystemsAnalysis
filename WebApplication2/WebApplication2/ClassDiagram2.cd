@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebApplication2.Cart" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAEAACCQ=</HashCode>
+      <FileName>Business Layer\Cart\Cart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.CartDecorator" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Business Layer\Cart\CartDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.ICart" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Business Layer\Cart\ICart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WithAccessory" Collapsed="true">
+    <Position X="3" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Business Layer\Cart\WithAccessory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WithCase" Collapsed="true">
+    <Position X="5.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Business Layer\Cart\WithCase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Catalogue" Collapsed="true">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Business Layer\Catalogue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Customer" Collapsed="true">
+    <Position X="14.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgAAAAAAAAAgAABQAAAAQAECAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Discount" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAA=</HashCode>
+      <FileName>Business Layer\Discount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.GoldOrder">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="WebApplication2.Order" FixedToPoint="true">
+      <Path>
+        <Point X="3.297" Y="0.5" />
+        <Point X="3.297" Y="0.26" />
+        <Point X="6.75" Y="0.26" />
+        <Point X="6.75" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Order\GoldOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Order">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Order\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.OrderContext">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Order\OrderContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebApplication2.SilverOrder">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="WebApplication2.Order" FixedToPoint="true">
+      <Path>
+        <Point X="3.906" Y="0.5" />
+        <Point X="3.906" Y="0.26" />
+        <Point X="5.25" Y="0.26" />
+        <Point X="5.25" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Order\SilverOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.StandardOrder">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="WebApplication2.Order" FixedToPoint="true">
+      <Path>
+        <Point X="3.602" Y="0.5" />
+        <Point X="3.602" Y="0.26" />
+        <Point X="8.25" Y="0.26" />
+        <Point X="8.25" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Order\StandardOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Product" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAiAAQAAAAAAAAAAAIgAAEAAAAAAASAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Stock" Collapsed="true">
+    <Position X="14.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Business Layer\Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Supplier" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIgAAAAAAAAAAAAAAAAAAQAAAEAAAACACAAAAAAAAA=</HashCode>
+      <FileName>Business Layer\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.CartMapper" Collapsed="true">
+    <Position X="11.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAEAEAAAAAAAAAAAAEAAACQ=</HashCode>
+      <FileName>Data Layer\CartMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.CustomerMapper" Collapsed="true">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAABAAAAAAAACAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Data Layer\CustomerMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.OrderMapper" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAIQAAAAAAAEAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Data Layer\OrderMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.ProductMapper" Collapsed="true">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAiAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAIAAAAE=</HashCode>
+      <FileName>Data Layer\ProductMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.StockMapper" Collapsed="true">
+    <Position X="11.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Data Layer\StockMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.SupplierMapper" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAgAEAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Data Layer\SupplierMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Test" Collapsed="true">
+    <Position X="14.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.CatalogueView" Collapsed="true">
+    <Position X="13" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAACAAAIAIAAAAAAAAAIAAAAAAAAAAAAAICAAA=</HashCode>
+      <FileName>WebPages\CatalogueView.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WebForm2" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAEAAAAAAAAAAAAAgAIAAAAIAAAAAQgAIAAAA=</HashCode>
+      <FileName>WebPages\HomePage.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Order1" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAEEAIAgAAAAAhAAAoIAAIAIABACAECBISYIg=</HashCode>
+      <FileName>WebPages\Order.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.OrderView" Collapsed="true">
+    <Position X="11.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>WebPages\OrderView.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WebForm3" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAABECQCLAgAAEBAAADIAAAAJAAAGAACAIQUoA=</HashCode>
+      <FileName>WebPages\Product.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.Register_User" Collapsed="true">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAAAABAACAAAAAAAABAAAQAIAAAAAAGAAAACQJAAAA=</HashCode>
+      <FileName>WebPages\Register User.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WebForm1" Collapsed="true">
+    <Position X="11.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gwEAAAAAAAABAIAAAAADCAAKIAAAYIAgAAAEGAIEAAQ=</HashCode>
+      <FileName>WebPages\Supplier.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.SupplierView" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>WebPages\SupplierView.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.WebPages.CartView" Collapsed="true">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAAEAAAIBAQA=</HashCode>
+      <FileName>WebPages\CartView.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

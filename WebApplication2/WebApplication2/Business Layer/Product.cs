@@ -14,39 +14,41 @@ namespace WebApplication2
         public double Price { get; set; }
         public string Type { get; set; }
         public int SupplierID { get; set; }
-        public string Name { get; set; }
 
-        public Product(int productID, double price, string type, int supplierID, string name)
+        public Product(int productID, double price, string type, int supplierID)
         {
             ProductID = productID;
             Price = price;
             Type = type;
             SupplierID = supplierID;
-            Name = name;
         }
 
-        public Product(double price,string type, int supplierID, string name)
+        public Product(double price,string type, int supplierID)
         {
+            ProductID = 0;
             ProductMapper.GetProductID(this);
             Price = price;
             Type = type;
             SupplierID = supplierID;
-            Name = name;
         }
 
-        public void addProduct()
+        public string addProduct()
         {
-           ProductMapper.AddProduct(this);
+           return ProductMapper.AddProduct(this);
         }
 
 
-        public void editProduct(double price, string type, int supplierID, string name)
+        public string editProduct(double price, string type, int supplierID)
         {
             Price = price;
             Type = type;
             SupplierID = supplierID;
-            Name = name;
-            ProductMapper.editProduct(this);
+            return ProductMapper.editProduct(this);
+        }
+
+        public string DeleteProduct()
+        {
+            return ProductMapper.DeleteProduct(this);
         }
 
         public Product selectProduct(int pID)

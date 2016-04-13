@@ -67,6 +67,15 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.RangeValidator RangeValidator2;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// lblType control.
         /// </summary>
         /// <remarks>
@@ -121,39 +130,39 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
         
         /// <summary>
-        /// btnNewSupplier control.
+        /// btnNewProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewSupplier;
+        protected global::System.Web.UI.WebControls.Button btnNewProduct;
         
         /// <summary>
-        /// btnEditSupplier control.
+        /// btnEditProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditSupplier;
+        protected global::System.Web.UI.WebControls.Button btnEditProduct;
         
         /// <summary>
-        /// btnViewSuppler control.
+        /// btnViewProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewSuppler;
+        protected global::System.Web.UI.WebControls.Button btnViewProducts;
         
         /// <summary>
-        /// btnDeleteSupplier control.
+        /// btnDeleteProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteSupplier;
+        protected global::System.Web.UI.WebControls.Button btnDeleteProduct;
     }
 }
