@@ -7,9 +7,9 @@ namespace WebApplication2
 {
     public abstract class CartDecorator : ICart
     {
-        protected Cart cBase;
+        protected ICart cBase;
         
-        protected CartDecorator(Cart c)
+        protected CartDecorator(ICart c)
         {
             cBase = c; 
         }

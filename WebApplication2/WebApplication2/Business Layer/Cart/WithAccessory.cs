@@ -9,11 +9,14 @@ namespace WebApplication2
     //Concrete Decorator class inherits from CartDecorator
     public class WithAccessory : CartDecorator
     {
-        public WithAccessory(Cart c)
+        private ICart cartWithCase;
+
+        public WithAccessory(ICart c)
             : base(c)
         {
 
         }
+
         public override double getTotal()
         {
             Console.WriteLine("With Accessory decorator invoked.");

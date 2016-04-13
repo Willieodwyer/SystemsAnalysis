@@ -15,6 +15,8 @@
         <asp:Label ID="lblTotalWithCase" runat="server" ></asp:Label>
         <br />
         <asp:Label ID="lblTotalWithAccessory" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblTotalWithDiscount" runat="server" ></asp:Label>
     
     </div>
     </form>

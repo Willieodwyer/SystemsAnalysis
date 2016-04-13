@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace WebApplication2
     {
         public static void addStockDB(int ProductID, int Quantity)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Windows 8\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "INSERT INTO [Stock] VALUES(@ProductID, @Quantity)";
 
             try
@@ -37,7 +39,8 @@ namespace WebApplication2
 
         public static void updateStockBD(int ProductID, int Quantity)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Windows 8\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "UPDATE [Stock] SET Quantity = @Quantity WHERE ProductID = @ProductID";
 
             try
