@@ -1,0 +1,11 @@
+In our project we decided to use the Decorator Pattern to apply discounts to a customer's cart based on the types of products that they
+were buying. 
+
+For example, if a customer has a Phone, a Case and another type of Accessory in their cart a discount of 5% would apply (3% based on the
+Case and 2% based on the Accessory). Separate discounts would also apply if there was just a Case (3%) or just an Accessory(2%).
+
+We chose the Decorator pattern to apply a discount to the cart as it allowed us to provide a flexible alternative to subclassing and
+it allows us to add new functionality or discounts to the cart without affecting existing objects. Due to the way that the Decorator 
+Pattern works we would now be able to add another type of discount based on for example a Tariff that the customer also has in their cart.
+
+ 

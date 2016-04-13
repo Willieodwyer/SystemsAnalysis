@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace WebApplication2
     {
         public static void AddProductDB(Product p)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
 
             try
@@ -39,7 +41,8 @@ namespace WebApplication2
 
         public static void editProductDB(string oldType, string manufacturer, string namebox, float Price)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "UPDATE [Products] SET Price = @Price, Type = @newType WHERE Type = @oldType";
             String newType = manufacturer + " " + namebox;
 
@@ -70,7 +73,8 @@ namespace WebApplication2
 
         public static double getProductPrice(int pID)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "SELECT Price FROM [Products] WHERE ProductID = @ProductID";
             double price = 0.0;
             SqlCommand command = new SqlCommand(sql, connection);
