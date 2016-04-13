@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace WebApplication2
         {
             int customerID = 0;
             String sql = "SELECT MAX(CustomerID) as MAX FROM [Customer]";
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-            SqlCommand command = new SqlCommand(sql, connection);
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString); SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader;
             command = new SqlCommand(sql, connection);
 
@@ -45,7 +46,8 @@ namespace WebApplication2
 
         public static string AddCustomer(Customer cust)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "INSERT INTO [Customer] VALUES(@CustomerID, @Name, @Address, @PhoneNumber, @Notes, @Username, @Password)";
 
@@ -85,7 +87,8 @@ namespace WebApplication2
         }
         public static string EditCustomer(Customer cust)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "UPDATE [Customer] SET CustomerID = @CustomerID, Name = @Name, Address = @Address, " +
                 " PhoneNumber = @PhoneNumber, Notes = @Notes, Username = @Username, Password = @Password";
@@ -127,7 +130,8 @@ namespace WebApplication2
 
         public static string DeleteCustomer(Customer cust)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "DELETE FROM [Customer] WHERE [CustomerID] = @CustomerID";
 

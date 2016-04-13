@@ -7,11 +7,11 @@ using System.Web;
 
 namespace WebApplication2
 {
-    public class Cart
+    //Concrete Component Class 
+    public class Cart : ICart
     {
         public int CustomerID { get; set; }
         public int CartID { get; set; }
-
 
         public Cart(int customerID, int cartID)
         {
@@ -42,6 +42,12 @@ namespace WebApplication2
         {
             return CartMapper.RemoveFromCart(this, productID);
         }
+
+
+        public override double getTotal()
+        {
+            return CartMapper.getTotal(this);
+        }
     }
-        
+
 }
