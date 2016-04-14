@@ -4,6 +4,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Configuration;
+using System.Web.Configuration;
+using System.Text;
 
 namespace WebApplication2
 {
@@ -14,7 +17,9 @@ namespace WebApplication2
         {
             int cartID = 0;
             String sql = "SELECT MAX(CartID) as MAX FROM [ShoppingCart]";
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader;
             command = new SqlCommand(sql, connection);
@@ -45,7 +50,8 @@ namespace WebApplication2
 
         public static string CreateCart(Cart cart)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Desktop\Systems Analysis Project\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "INSERT INTO [ShoppingCart] VALUES(@CustomerID, NULL, NULL, @CartID)";
 
@@ -74,7 +80,8 @@ namespace WebApplication2
 
         public static string EditCart(Cart cart)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\Source\Repos\SystemsAnalysis4\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "UPDATE[ShoppingCart] SET CustomerID = @CustomerID, ProductID = NULL, Quantity = NULL, CartID = @CartID";
 

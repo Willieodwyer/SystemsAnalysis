@@ -19,7 +19,8 @@ namespace WebApplication2
     {
         public static string GetOrderID(Order ord){
             int oID = 0;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT OrderID FROM [Order] WHERE OrderID = (SELECT MAX(OrderID) FROM [Order])", con);
             try
@@ -220,6 +221,172 @@ namespace WebApplication2
             catch (SqlException sqlEx)
             {
                 return (sqlEx.Message);
+            }
+        }
+
+        public static string GetOrderPrice(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string price = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    price += reader["Amount"];
+                }
+                reader.Close();
+                
+              
+                command.ExecuteNonQuery();
+                connection.Close();
+                return price;
+            }
+            catch (SqlException sqlEx)
+            {
+                return (sqlEx.Message);
+            }
+        }
+
+        public static int GetOrderCustID(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string custID = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    custID += reader["CustomerID"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToInt32(custID);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static int GetOrderProductID(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string productID = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    productID += reader["ProductID"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToInt32(productID);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static string GetOrderAddress(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string address = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    address += reader["Address"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return address;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static DateTime GetOrderDate(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string date = "";
+            DateTime now = DateTime.Now;
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    date += reader["OrderDate"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToDateTime(date);
+            }
+            catch
+            {
+                return now;
             }
         }
     }

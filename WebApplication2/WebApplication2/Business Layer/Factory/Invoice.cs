@@ -7,6 +7,9 @@ namespace WebApplication2.Business_Layer
 {
     public class Invoice
     {
-       
+        /*public int getOrderInfo()
+        {
+            //return this.orderID;
+        }*/
     }
 }

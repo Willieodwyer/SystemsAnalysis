@@ -20,7 +20,8 @@ namespace WebApplication2
         public static string GetSupplierID(Supplier supp)
         {
             int sID = 0;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT SupplierID FROM [Supplier] WHERE SupplierID = (SELECT MAX(SupplierID) FROM [Supplier])", con);
             try
@@ -46,7 +47,8 @@ namespace WebApplication2
 
         public static string Add(Supplier supp)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Supplier] VALUES(@SupplierID ,@Name, @Address, @PhoneNum, @Notes)";
 
             //if there is an error with the data it will catch the exception and display an error
@@ -83,7 +85,8 @@ namespace WebApplication2
 
         public static string Delete(int suppID)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "DELETE FROM [Supplier] WHERE SupplierID = @SupplierID";
 
@@ -121,7 +124,8 @@ namespace WebApplication2
             supp.PhoneNum = phoneNum;
             supp.Notes = notes;
 
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
             //[Supplier] VALUES(@SupplierID ,@Name, @Address, @PhoneNum, @Notes)"
             String sql = "UPDATE [Supplier] SET Name = @Name, Address = @Address, PhoneNumber = @PhoneNumber, Notes = @Notes WHERE SupplierID = @SupplierID";
 
