@@ -14,7 +14,7 @@ using System.Web.Configuration;
 using System.Text;
 
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
@@ -132,13 +132,13 @@ namespace WebApplication2
         protected void btnNewProduct_Click(object sender, EventArgs e)
         {
             //public Product(double price,string type, int supplierID)
-            Product prod = new Product(Convert.ToInt32(txtPrice.Text), txtType.Text, Convert.ToInt32(txtSupplier.Text));
+            Product prod = new StandardProduct(Convert.ToInt32(txtPrice.Text), txtType.Text, Convert.ToInt32(txtSupplier.Text));
             Response.Write(prod.addProduct());
         }
 
         protected void btnEditProduct_Click(object sender, EventArgs e)
         {
-            Product prod = new Product(Convert.ToInt32(lstProducts.SelectedItem.Value), Convert.ToInt32(txtPrice.Text), txtPrice.Text, Convert.ToInt32(txtSupplier.Text));
+            Product prod = new StandardProduct(Convert.ToInt32(lstProducts.SelectedItem.Value), Convert.ToInt32(txtPrice.Text), txtPrice.Text, Convert.ToInt32(txtSupplier.Text));
             Response.Write(prod.editProduct(Convert.ToInt32(txtPrice.Text), txtType.Text, Convert.ToInt32(txtSupplier.Text)));
         }
 
@@ -149,7 +149,7 @@ namespace WebApplication2
 
         protected void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            Product prod = new Product(Convert.ToInt32(lstProducts.SelectedItem.Value), Convert.ToInt32(txtPrice.Text), txtPrice.Text, Convert.ToInt32(txtSupplier.Text));
+            Product prod = new StandardProduct(Convert.ToInt32(lstProducts.SelectedItem.Value), Convert.ToInt32(txtPrice.Text), txtPrice.Text, Convert.ToInt32(txtSupplier.Text));
             Response.Write(prod.DeleteProduct());
         }
 

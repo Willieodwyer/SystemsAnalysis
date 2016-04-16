@@ -92,6 +92,7 @@
     <Compile Include="Business Layer\Order\GoldOrder.cs" />
     <Compile Include="Business Layer\Order\OrderContext.cs" />
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
+    <Compile Include="Business Layer\Product\Product.cs" />
     <Compile Include="Data Layer\CartMapper.cs" />
     <Compile Include="Data Layer\CustomerMapper.cs" />
     <Compile Include="Data Layer\ProductMapper.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="WebPages\CatalogueView.aspx.designer.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Business Layer\Discount.cs" />
+    <Compile Include="Business Layer\ProductDiscount.cs" />
     <Compile Include="WebPages\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -145,7 +146,7 @@
     <Compile Include="Business Layer\Stock.cs" />
     <Compile Include="Business Layer\Order\StandardOrder.cs" />
     <Compile Include="Business Layer\Supplier.cs" />
-    <Compile Include="Business Layer\Product.cs" />
+    <Compile Include="Business Layer\Product\StandardProduct.cs" />
     <Compile Include="Business Layer\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPages\HomePage.aspx.cs">

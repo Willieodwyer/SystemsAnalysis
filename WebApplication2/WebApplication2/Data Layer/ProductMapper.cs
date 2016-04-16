@@ -168,7 +168,7 @@ namespace WebApplication2
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    retProduct = new Product(Convert.ToInt32(reader["ProductID"]), (reader["Type"]).ToString(),
+                    retProduct = new StandardProduct(Convert.ToInt32(reader["ProductID"]), (reader["Type"]).ToString(),
                         Convert.ToInt32(reader["SupplierID"]));
                 }
                 reader.Close();

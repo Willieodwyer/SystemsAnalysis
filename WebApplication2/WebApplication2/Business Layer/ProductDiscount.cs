@@ -16,19 +16,25 @@ using System.Text;
 //@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\workarea\SystemsAnalysis-master\SystemsAnalysis-master\WebApplication2\WebApplication2\App_Data\Database2.mdf;Integrated Security=True"
 namespace WebApplication2
 {
-    public class Discount
+    public class ProductDiscount
     {
-        public int customerClass { get; set; }
+        public double discount { get; set; }
+        public Product prod {get;set;}
 
-        double discount;
-
-        public Discount(int custClass , int pID)
+        public ProductDiscount(Product p)
         {
+            prod = p;
+            discount = .8;
+        }
+
+        public double applyDiscount()
+        {
+            discount = 1;
+
             try
             {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\workarea\SystemsAnalysis-master\SystemsAnalysis-master\WebApplication2\WebApplication2\App_Data\Database2.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Discount]");
+                SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [ProductDiscount]", sqlConnection);
                 sqlConnection.Open();
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -36,27 +42,18 @@ namespace WebApplication2
                 while (reader.Read())
                 {
                     //OrderID	CustomerID	ProductID	Address	Amount	OrderDate	SupplierID
-                    if(pID == Convert.ToInt32(reader["ProductID"])){
-                        discount = Convert.ToDouble(reader["discount"]);
+                    if (prod.ProductID == Convert.ToInt32(reader["ProductID"]))
+                    {
+                        discount = Convert.ToDouble(reader["Discount"]);
                     }
-                    else if(custClass == Convert.ToInt32(reader["CustomerID"])){
-                        discount = Convert.ToDouble(reader["discount"]);
-                    }
-                    else
-                        discount = 1;
                 }
+                return discount * prod.Price;
             }
             catch (SqlException sept)
             {
                 Console.WriteLine(sept.Message);
+                return 2;
             }
-
-            customerClass = custClass;
-        }
-
-        public double applyDiscount(double A)
-        {
-            return A * discount;
         }
     }
 

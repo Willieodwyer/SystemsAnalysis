@@ -13,12 +13,12 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class Order1 : System.Web.UI.Page
     {
         static OrderContext newOrder;
-        static List<Product> productList = new List<Product>();
+        static Product newProduct;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,11 +31,16 @@ namespace WebApplication2
         protected void btnOrder_Click(object sender, EventArgs e)
         {
             if (IsValid)
-            {
+            {//Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text), 1)
+                newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
+                ProductDiscount pd = new ProductDiscount(newProduct);
+                Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
+
+
                 newOrder = new OrderContext(
                     1,
                     1,
-                    Convert.ToInt32(lstProducts.SelectedValue),
+                    newProduct,
                     1,
                     "Somewhere Land",
                     Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text),
@@ -125,11 +130,13 @@ namespace WebApplication2
             //Customer cust = (Customer) Session["CustomerOBJ"];
             if (newOrder != null)
             {
+                newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
+                ProductDiscount pd = new ProductDiscount(newProduct);
+                Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
+
                 newOrder.Order.AddProduct(
                     Convert.ToInt32(lstProducts.SelectedValue), 
                     Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text));
-
-
                 Response.Write("Product processed!!");
             }
             else

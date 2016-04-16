@@ -8,14 +8,14 @@ using System.Windows;
 
 namespace WebApplication2
 {
-    public class Product
+    public class StandardProduct : Product
     {
-        public int ProductID { get; set; }
-        public double Price { get; set; }
-        public string Type { get; set; }
-        public int SupplierID { get; set; }
+        override public int ProductID { get; set; }
+        override public double Price { get; set; }
+        override public string Type { get; set; }
+        override public int SupplierID { get; set; }
 
-        public Product(int productID, double price, string type, int supplierID)
+        public StandardProduct(int productID, double price, string type, int supplierID)
         {
             ProductID = productID;
             Price = price;
@@ -23,7 +23,7 @@ namespace WebApplication2
             SupplierID = supplierID;
         }
 
-        public Product(double price,string type, int supplierID)
+        public StandardProduct(double price, string type, int supplierID)
         {
             ProductID = 0;
             ProductMapper.GetProductID(this);
@@ -32,13 +32,13 @@ namespace WebApplication2
             SupplierID = supplierID;
         }
 
-        public string addProduct()
+        override public string addProduct()
         {
            return ProductMapper.AddProduct(this);
         }
 
 
-        public string editProduct(double price, string type, int supplierID)
+        override public string editProduct(double price, string type, int supplierID)
         {
             Price = price;
             Type = type;
@@ -46,12 +46,12 @@ namespace WebApplication2
             return ProductMapper.editProduct(this);
         }
 
-        public string DeleteProduct()
+        override public string DeleteProduct()
         {
             return ProductMapper.DeleteProduct(this);
         }
 
-        public Product selectProduct(int pID)
+        override public Product selectProduct(int pID)
         {
             return ProductMapper.SelectProduct(pID);
         }
@@ -60,5 +60,6 @@ namespace WebApplication2
         {
             return ProductMapper.getProductPrice(pID);
         }
+
     }
 }

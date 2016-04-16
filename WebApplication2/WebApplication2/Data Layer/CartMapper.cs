@@ -208,7 +208,7 @@ namespace WebApplication2
 
             for (int i = 0; i < pIDs.Count; i++)
             {
-                total += Product.getProductPrice(pIDs[i]) * quantities[i];
+                total += StandardProduct.getProductPrice(pIDs[i]) * quantities[i];
             }
 
             return total;

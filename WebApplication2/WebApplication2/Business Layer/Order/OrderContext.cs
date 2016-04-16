@@ -20,7 +20,8 @@ namespace WebApplication2
             }
         }
 
-        public OrderContext(int custType, int customerID, int productID, int supplierID, String address, double amount,
+
+        public OrderContext(int custType, int customerID, Product productID, int supplierID, String address, double amount,
             DateTime date)
         {
             switch (custType)

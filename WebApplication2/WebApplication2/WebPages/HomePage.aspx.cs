@@ -9,7 +9,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class WebForm2 : System.Web.UI.Page
     {

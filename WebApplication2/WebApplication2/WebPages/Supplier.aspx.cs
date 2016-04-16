@@ -14,7 +14,7 @@ using System.Web.Configuration;
 using System.Text;
 
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
