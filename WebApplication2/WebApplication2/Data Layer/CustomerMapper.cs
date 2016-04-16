@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace WebApplication2
 {
@@ -16,7 +17,8 @@ namespace WebApplication2
             int customerID = 0;
             String sql = "SELECT MAX(CustomerID) as MAX FROM [Customer]";
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString); SqlCommand command = new SqlCommand(sql, connection);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader;
             command = new SqlCommand(sql, connection);
 

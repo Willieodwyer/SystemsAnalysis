@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace WebApplication2
 {
@@ -13,6 +14,8 @@ namespace WebApplication2
         public static string GetProductID(Product p)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
             SqlConnection con = new SqlConnection(connectionString); 
 
             try
@@ -134,8 +137,8 @@ namespace WebApplication2
 
         public static string DeleteProduct(Product p)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
             String sql = "DELETE FROM [Product] WHERE [Product] = @ProductID";
 
             //if there is an error with the data it will catch the exception and display an error

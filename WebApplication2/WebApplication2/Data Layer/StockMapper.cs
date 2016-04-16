@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace WebApplication2
 {
@@ -13,7 +14,7 @@ namespace WebApplication2
         public static void addStockDB(int ProductID, int Quantity)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString); 
+            SqlConnection connection = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Stock] VALUES(@ProductID, @Quantity)";
 
             try
