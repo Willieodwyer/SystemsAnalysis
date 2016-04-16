@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CatalogueView.aspx.cs" Inherits="WebApplication2.CatalogueView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CatalogueView.aspx.cs" Inherits="WebApplication2.WebPages.CatalogueView" %>
 
 <!DOCTYPE html>
 

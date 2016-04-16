@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
   For more information on how to configure your ASP.NET application, please visit
   http://go.microsoft.com/fwlink/?LinkId=169433
@@ -8,9 +8,11 @@
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
   </appSettings>
   <connectionStrings>
+<<<<<<< Updated upstream
+    <add name="myConnectionString" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\jack\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True"/>
+=======
     <add name="myConnectionString" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True"/>
-    <add name="ConnectionString" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True"
-      providerName="System.Data.SqlClient" />
+>>>>>>> Stashed changes
   </connectionStrings>
   <system.web>
     <compilation debug="true" targetFramework="4.5" />

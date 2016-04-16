@@ -13,7 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class SupplierView : System.Web.UI.Page
     {

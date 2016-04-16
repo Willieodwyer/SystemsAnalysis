@@ -57,7 +57,7 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -69,7 +69,7 @@ namespace WebApplication2
                     command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = ord.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.Product.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
                     command.Parameters["@Address"].Value = ord.Address;
@@ -108,7 +108,7 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -117,7 +117,7 @@ namespace WebApplication2
                     command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = ord.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.Product.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
                     command.Parameters["@Address"].Value = ord.Address;
@@ -153,7 +153,7 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -203,7 +203,7 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);

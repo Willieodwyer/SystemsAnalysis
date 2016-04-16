@@ -14,46 +14,47 @@ namespace WebApplication2
         public static string GetProductID(Product p)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
             SqlConnection con = new SqlConnection(connectionString); 
 
             try
             {
-            int pID = 0;
-            SqlConnection con = new SqlConnection();
-            SqlDataReader reader;
-            SqlCommand cmd = new SqlCommand("SELECT ProductID FROM [Product] WHERE OrderID = (SELECT MAX(ProductID) FROM [Product])", con);
-            try
-            {
-                con.Open();
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
+                int pID = 0;
+                SqlDataReader reader;
+                SqlCommand cmd = new SqlCommand("SELECT ProductID FROM [Products] WHERE ProductID = (SELECT MAX(ProductID) FROM [Products])", con);
+                try
                 {
-                    pID = Convert.ToInt32(reader["OrderID"]);
-                    pID++;
+                    con.Open();
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        pID = Convert.ToInt32(reader["ProductID"]);
+                        pID++;
+                    }
+                    reader.Close();
+                    p.ProductID = pID;
+                    con.Close();
                 }
-                reader.Close();
-                p.ProductID = pID;
-
+                catch (SqlException sqlEx)
+                {
+                    return (sqlEx.Message);
+                }
+                return "complete";
             }
             catch (SqlException sqlEx)
             {
                 return (sqlEx.Message);
             }
-            finally
-            {
-                con.Close();
-            }
-            return "complete";
         }
 
 
         public static string AddProduct(Product p)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+	    string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+	    SqlConnection connection = new SqlConnection(connectionString);
 
-            String sql = "INSERT INTO [Product] VALUES(@ProductID ,@Price, @Type, @SupplierID, @Name)";
+            String sql = "INSERT INTO [Products] VALUES(@ProductID ,@Price, @Type, @SupplierID)";
             //if there is an error with the data it will catch the exception and display an error
             try
             {
@@ -74,15 +75,12 @@ namespace WebApplication2
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
                     command.Parameters["@SupplierID"].Value = p.SupplierID;
 
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar);
-                    command.Parameters["@Name"].Value = p.Name;
-
                     command.ExecuteNonQuery();
                     connection.Close();
                     return "complete";
                 }
                 else
-                    return "ProductID <= 0 for some reason - OrderMapper";
+                    return "ProductID <= 0 for some reason - ProductMapper";
 
             }
             catch (SqlException sqlEx)
@@ -97,8 +95,8 @@ namespace WebApplication2
             SqlConnection connection = new SqlConnection(connectionString); 
 
 
-            String sql = "UPDATE [Product] SET Price = @Price, Type = @Type," +
-                                "SupplierID = @SupplierID, Name = @Name WHERE ProductID = @ProductID)";
+            String sql = "UPDATE [Products] SET Price = @Price, Type = @Type," +
+                                "SupplierID = @SupplierID WHERE ProductID = @ProductID";
 
             //if there is an error with the data it will catch the exception and display an error
             try
@@ -116,9 +114,6 @@ namespace WebApplication2
 
                     command.Parameters.Add("@SupplierID", SqlDbType.Int);
                     command.Parameters["@SupplierID"].Value = p.SupplierID;
-
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar);
-                    command.Parameters["@Name"].Value = p.Name;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
                     command.Parameters["@ProductID"].Value = p.ProductID;
@@ -170,15 +165,15 @@ namespace WebApplication2
             Product retProduct = null;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlDataReader reader;
-            SqlCommand cmd = new SqlCommand("SELECT * FROM [Product] WHERE ProductID = " + pid, con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Products] WHERE ProductID = " + pid, con);
             try
             {
                 con.Open();
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    retProduct = new Product(Convert.ToInt32(reader["ProductID"]), (reader["Type"]).ToString(),
-                        Convert.ToInt32(reader["SupplierID"]), (reader["Name"]).ToString());
+                    retProduct = new StandardProduct(Convert.ToInt32(reader["ProductID"]), (reader["Type"]).ToString(),
+                        Convert.ToInt32(reader["SupplierID"]));
                 }
                 reader.Close();
                 con.Close();

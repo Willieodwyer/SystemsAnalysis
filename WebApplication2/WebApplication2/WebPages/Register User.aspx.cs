@@ -6,8 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using WebApplication2;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class Register_User : System.Web.UI.Page
     {

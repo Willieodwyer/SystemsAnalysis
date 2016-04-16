@@ -71,11 +71,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.OrderContext" Collapsed="true">
-    <Position X="12.75" Y="1.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Business Layer\Order\OrderContext.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order1" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.SilverOrder" Collapsed="true">
     <Position X="5" Y="1.75" Width="1.5" />
