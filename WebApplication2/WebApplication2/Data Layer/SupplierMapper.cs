@@ -48,7 +48,7 @@ namespace WebApplication2
         public static string Add(Supplier supp)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString); 
+            SqlConnection connection = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Supplier] VALUES(@SupplierID ,@Name, @Address, @PhoneNum, @Notes)";
 
             //if there is an error with the data it will catch the exception and display an error
