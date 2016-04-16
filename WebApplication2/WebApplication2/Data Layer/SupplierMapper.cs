@@ -21,7 +21,7 @@ namespace WebApplication2
         {
             int sID = 0;
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString); 
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT SupplierID FROM [Supplier] WHERE SupplierID = (SELECT MAX(SupplierID) FROM [Supplier])", con);
             try

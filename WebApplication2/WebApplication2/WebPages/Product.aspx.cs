@@ -10,7 +10,7 @@ namespace WebApplication2
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        Product p;
+        static Product p;
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -21,7 +21,7 @@ namespace WebApplication2
             String s = PriceBox.Text;
             int pr = Convert.ToInt32(s);
             float price = (float)pr;
-            p = new Product(ManufacturerBox.Text,NameBox.Text,price);
+            p = new Product();
             p.addProduct();
             
             
@@ -34,7 +34,7 @@ namespace WebApplication2
             int pr = Convert.ToInt32(s);
             float price = (float)pr;
             Product temp = new Product(type,"",0);
-            ProductMapper.editProductDB(type, EditManufacturer.Text, EditName.Text, price);
+            ProductMapper.editProduct(type, EditManufacturer.Text, EditName.Text, price);
         }
 
     }

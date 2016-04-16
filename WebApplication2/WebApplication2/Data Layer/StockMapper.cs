@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace WebApplication2
         public static void updateStockBD(int ProductID, int Quantity)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString); 
             String sql = "UPDATE [Stock] SET Quantity = @Quantity WHERE ProductID = @ProductID";
 
             try
