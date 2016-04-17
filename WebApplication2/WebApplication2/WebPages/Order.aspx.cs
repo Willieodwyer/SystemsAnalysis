@@ -38,19 +38,21 @@ namespace WebApplication2.WebPages
 
 
                 newOrder = new OrderContext(
-                    1,
+                    2,
                     1,
                     newProduct,
                     1,
-                    "Somewhere Land",
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text),
+                    txtAddress.Text,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text),
                     DateTime.Now);
                 newOrder.Order.CreateOrder();
 
-                Response.Write("Order processed!!");
+                Response.Write("Order processed!!\n\n\n\n");
                 btnOrder.Enabled = false;
                 btnAddOrder.Enabled = true;
                 btnViewOrder.Enabled = true;
+                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                    "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
             }
 
         }
@@ -135,9 +137,11 @@ namespace WebApplication2.WebPages
                 Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
 
                 newOrder.Order.AddProduct(
-                    Convert.ToInt32(lstProducts.SelectedValue), 
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text));
-                Response.Write("Product processed!!");
+                    newProduct.ProductID,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text));
+                Response.Write("Product processed!!\n \n ");
+                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                    "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
             }
             else
                 Response.Write("new order is null????");
@@ -161,6 +165,11 @@ namespace WebApplication2.WebPages
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtAddress_TextChanged(object sender, EventArgs e)
         {
 
         }

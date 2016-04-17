@@ -24,6 +24,11 @@
             <br />
             <br />
 
+            <asp:Label ID="lblAddress" runat="server" Text="Address" Font-Bold="True" Width="173px" Font-Size="Medium"></asp:Label>
+            <asp:TextBox ID="txtAddress" runat="server" Width="170px" OnTextChanged="txtAddress_TextChanged"> </asp:TextBox>
+            <br />
+            <br />
+
             <asp:Label ID="lblQuantity" runat="server" Text="Quantity" Font-Bold="True" Width="173px" Font-Size="Medium"></asp:Label>
             <asp:TextBox ID="txtQuantity" runat="server" Width="170px" OnTextChanged="txtQuantity_TextChanged"></asp:TextBox>
             <asp:RangeValidator

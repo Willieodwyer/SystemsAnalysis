@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Configuration;
 
 namespace WebApplication2
 {
@@ -16,7 +15,6 @@ namespace WebApplication2
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
-            SqlConnection con = new SqlConnection(connectionString); 
 
             try
             {

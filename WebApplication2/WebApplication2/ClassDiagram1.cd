@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Comment CommentText="Presentation">
-    <Position X="0.573" Y="0.583" Height="0.344" Width="1.367" />
+  <Comment CommentText="Application Logic">
+    <Position X="0.833" Y="1.427" Height="0.344" Width="1.367" />
   </Comment>
   <Comment CommentText="Business Logic">
-    <Position X="2.219" Y="0.604" Height="0.344" Width="1.367" />
+    <Position X="2.479" Y="1.448" Height="0.344" Width="1.367" />
   </Comment>
   <Comment CommentText="Database">
-    <Position X="4" Y="0.604" Height="0.344" Width="1.367" />
+    <Position X="4.26" Y="1.448" Height="0.344" Width="1.367" />
+  </Comment>
+  <Comment CommentText="View (Order web page)">
+    <Position X="0.753" Y="0.906" Height="0.329" Width="1.516" />
   </Comment>
   <Class Name="WebApplication2.Cart" Collapsed="true">
     <Position X="8.75" Y="7.5" Width="1.5" />
@@ -66,14 +69,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.GoldOrder" Collapsed="true">
-    <Position X="2.25" Y="5" Width="1.5" />
+    <Position X="2.5" Y="5.75" Width="1.5" />
     <InheritanceLine Type="WebApplication2.Order" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="2.875" Y="4.728" />
-        <Point X="2.875" Y="4.846" />
-        <Point X="2.148" Y="4.846" />
-        <Point X="2.148" Y="5.312" />
-        <Point X="2.25" Y="5.312" />
+        <Point X="3.125" Y="5.478" />
+        <Point X="3.125" Y="5.601" />
+        <Point X="2.377" Y="5.601" />
+        <Point X="2.377" Y="6.062" />
+        <Point X="2.5" Y="6.062" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -82,7 +85,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.Order">
-    <Position X="2.25" Y="1.25" Width="1.5" />
+    <Position X="2.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
       <FileName>Business Layer\Order\Order.cs</FileName>
@@ -96,15 +99,15 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.SilverOrder" Collapsed="true">
-    <Position X="2.25" Y="6" Width="1.5" />
+    <Position X="2.5" Y="6.75" Width="1.5" />
     <InheritanceLine Type="WebApplication2.Order" FixedFromPoint="true">
       <Path>
-        <Point X="2.875" Y="4.728" />
-        <Point X="2.875" Y="4.846" />
-        <Point X="2.148" Y="4.846" />
-        <Point X="2.148" Y="5.846" />
-        <Point X="3" Y="5.846" />
-        <Point X="3" Y="6" />
+        <Point X="3.125" Y="5.478" />
+        <Point X="3.125" Y="5.601" />
+        <Point X="2.377" Y="5.601" />
+        <Point X="2.377" Y="6.596" />
+        <Point X="3.25" Y="6.596" />
+        <Point X="3.25" Y="6.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -113,14 +116,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.StandardOrder" Collapsed="true">
-    <Position X="2.25" Y="6.75" Width="1.5" />
+    <Position X="2.5" Y="7.5" Width="1.5" />
     <InheritanceLine Type="WebApplication2.Order" FixedFromPoint="true">
       <Path>
-        <Point X="2.875" Y="4.728" />
-        <Point X="2.875" Y="4.846" />
-        <Point X="2.148" Y="4.846" />
-        <Point X="2.148" Y="7.096" />
-        <Point X="2.25" Y="7.096" />
+        <Point X="3.125" Y="5.478" />
+        <Point X="3.125" Y="5.601" />
+        <Point X="2.377" Y="5.601" />
+        <Point X="2.377" Y="7.846" />
+        <Point X="2.5" Y="7.846" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -164,7 +167,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.OrderMapper">
-    <Position X="4" Y="1.25" Width="1.5" />
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAQAAAQYAAAAAAIQAAAAAAAEAAAgAAAAAAAABA=</HashCode>
       <FileName>Data Layer\OrderMapper.cs</FileName>
@@ -219,7 +222,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.WebPages.Order1">
-    <Position X="0.5" Y="1.25" Width="1.5" />
+    <Position X="0.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAEEAIAgAAAAAhAAAoIAAIAIAAACAECBISYIg=</HashCode>
       <FileName>WebPages\Order.aspx.cs</FileName>
