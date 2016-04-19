@@ -15,7 +15,6 @@ namespace WebApplication2
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
             String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
-
             try
             {
                 int pID = 0;

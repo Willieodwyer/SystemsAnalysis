@@ -67,7 +67,7 @@ namespace WebApplication2.WebPages
 
             string selectSQL = "SELECT * FROM [Products]";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             SqlCommand cmd = new SqlCommand(selectSQL, con);
             SqlDataReader reader;
 
