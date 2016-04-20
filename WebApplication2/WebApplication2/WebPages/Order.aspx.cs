@@ -19,6 +19,7 @@ namespace WebApplication2.WebPages
     {
         static OrderContext newOrder;
         static Product newProduct;
+        static Customer sessionCust;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,25 +33,33 @@ namespace WebApplication2.WebPages
         {
             if (IsValid)
             {//Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text), 1)
+                sessionCust = (Customer)Session["CustObj"];
                 newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
                 ProductDiscount pd = new ProductDiscount(newProduct);
-                Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
-
-
-                newOrder = new OrderContext(
-                    1,
-                    1,
+                if (sessionCust != null)
+                {
+                    Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
+                    newOrder = new OrderContext(
+                    sessionCust.CustomerID - 1,
+                    sessionCust.CustomerID,
                     newProduct,
                     1,
-                    "Somewhere Land",
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text),
+                    txtAddress.Text,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text),
                     DateTime.Now);
-                newOrder.Order.CreateOrder();
+                    newOrder.Order.CreateOrder();
 
-                Response.Write("Order processed!!");
-                btnOrder.Enabled = false;
-                btnAddOrder.Enabled = true;
-                btnViewOrder.Enabled = true;
+                    Response.Write("Order processed!!\n\n\n\n");
+                    btnOrder.Enabled = false;
+                    btnAddOrder.Enabled = true;
+                    btnViewOrder.Enabled = true;
+                    Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                        "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
+                    Session["OrderObj"] = newOrder.Order;
+                }
+                else
+                    Response.Write("No customer is session, please log in");
+
             }
 
         }
@@ -65,7 +74,7 @@ namespace WebApplication2.WebPages
 
             string selectSQL = "SELECT * FROM [Products]";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             SqlCommand cmd = new SqlCommand(selectSQL, con);
             SqlDataReader reader;
 
@@ -135,9 +144,11 @@ namespace WebApplication2.WebPages
                 Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
 
                 newOrder.Order.AddProduct(
-                    Convert.ToInt32(lstProducts.SelectedValue), 
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text));
-                Response.Write("Product processed!!");
+                    newProduct.ProductID,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text));
+                Response.Write("Product processed!!\n \n ");
+                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                    "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
             }
             else
                 Response.Write("new order is null????");
@@ -161,6 +172,11 @@ namespace WebApplication2.WebPages
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtAddress_TextChanged(object sender, EventArgs e)
         {
 
         }

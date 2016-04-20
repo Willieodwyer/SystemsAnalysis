@@ -78,7 +78,9 @@
     <Content Include="WebPages\Product.aspx" />
     <Content Include="WebPages\Register User.aspx" />
     <Content Include="WebPages\SupplierView.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPages\HomePage.aspx" />
     <Content Include="WebPages\Supplier.aspx" />
   </ItemGroup>

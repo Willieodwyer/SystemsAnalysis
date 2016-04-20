@@ -60,7 +60,8 @@ namespace WebApplication2
 
         override public string AddProduct(int pID, double amnt)
         {
-            return OrderMapper.AddProduct(this, pID, amnt);
+            Amount =  amnt * .9;
+            return OrderMapper.AddProduct(this, pID, Amount);
         }
 
 
