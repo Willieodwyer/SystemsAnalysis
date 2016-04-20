@@ -36,25 +36,30 @@ namespace WebApplication2.WebPages
                 sessionCust = (Customer)Session["CustObj"];
                 newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
                 ProductDiscount pd = new ProductDiscount(newProduct);
-                Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
-
-
-                newOrder = new OrderContext(
+                if (sessionCust != null)
+                {
+                    Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
+                    newOrder = new OrderContext(
                     sessionCust.CustomerID - 1,
-                    1,
+                    sessionCust.CustomerID,
                     newProduct,
                     1,
                     txtAddress.Text,
                     pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text),
                     DateTime.Now);
-                newOrder.Order.CreateOrder();
+                    newOrder.Order.CreateOrder();
 
-                Response.Write("Order processed!!\n\n\n\n");
-                btnOrder.Enabled = false;
-                btnAddOrder.Enabled = true;
-                btnViewOrder.Enabled = true;
-                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
-                    "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
+                    Response.Write("Order processed!!\n\n\n\n");
+                    btnOrder.Enabled = false;
+                    btnAddOrder.Enabled = true;
+                    btnViewOrder.Enabled = true;
+                    Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                        "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
+                    Session["OrderObj"] = newOrder.Order;
+                }
+                else
+                    Response.Write("No customer is session, please log in");
+
             }
 
         }
