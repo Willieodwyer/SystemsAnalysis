@@ -59,8 +59,11 @@ namespace WebApplication2.WebPages
         protected void Login(object sender, EventArgs e)
         {
             if (checkDetails(txtEmail.Text, txtPassword.Text))
-                if(newCust != null)
+                if (newCust != null)
+                {
+                    Session["CustObj"] = newCust;
                     Response.Redirect("Order.aspx", true);
+                }
                 else
                     loginSuccess.Text = "cust is null";
             else
