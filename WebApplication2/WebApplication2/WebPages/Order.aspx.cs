@@ -19,6 +19,7 @@ namespace WebApplication2.WebPages
     {
         static OrderContext newOrder;
         static Product newProduct;
+        static Customer sessionCust;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,13 +33,14 @@ namespace WebApplication2.WebPages
         {
             if (IsValid)
             {//Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text), 1)
+                sessionCust = (Customer)Session["CustObj"];
                 newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
                 ProductDiscount pd = new ProductDiscount(newProduct);
                 Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
 
 
                 newOrder = new OrderContext(
-                    2,
+                    sessionCust.CustomerID - 1,
                     1,
                     newProduct,
                     1,

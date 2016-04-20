@@ -56,13 +56,16 @@
             <br />
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnOrder" runat="server" Font-Bold="True" Text="New Order" OnClick="btnOrder_Click" />
+            <asp:Button ID="btnOrder" runat="server" Font-Bold="True" Text="New Order" OnClick="btnOrder_Click" />
             <asp:Button ID="btnAddOrder" runat="server" Font-Bold="True" Text="Add to Order" OnClick="btnAddProduct_Click" Enabled="False" />
             <asp:Button ID="btnViewOrder" runat="server" Font-Bold="True" Text="View Order" OnClick="btnViewOrder_Click" Enabled="False" />
             <br />
             <br />
+            <br />
             <asp:Label ID="lblSuccess" runat="server"></asp:Label>
             <br />
+            <asp:Button ID="btnConfirm" runat="server" Text="CartView" PostBackUrl="~/WebPages/CartView.aspx"  CausesValidation="False"/>
+
         </div>
     </form>
 </body>
