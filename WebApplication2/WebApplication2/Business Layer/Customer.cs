@@ -18,6 +18,17 @@ namespace WebApplication2
         public String Username { get; set; }
         public String Password { get; set; }
 
+        public CustomerMapper CustomerMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public Customer(int customerID, String name, String address, int phoneNum, String notes, String username,
                         String password)
         {

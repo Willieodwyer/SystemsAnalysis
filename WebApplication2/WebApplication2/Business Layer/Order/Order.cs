@@ -25,6 +25,17 @@ namespace WebApplication2
         public abstract double Amount { get; set; }
         public abstract DateTime Date { get; set; }
 
+        public OrderMapper OrderMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public abstract string CreateOrder();
         public abstract string EditOrder(int orderID, int customerID, Product productID, int supplierID, String address, double amount,
             DateTime date);
