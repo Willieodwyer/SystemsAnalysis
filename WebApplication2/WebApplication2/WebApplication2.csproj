@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Factory\Invoice.aspx" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
     <Content Include="ClassDiagram3.cd" />
@@ -92,6 +93,17 @@
     <Compile Include="Business Layer\Cart\WithAccessory.cs" />
     <Compile Include="Business Layer\Cart\WithCase.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
+    <Compile Include="Factory\goldOrderInvoice.cs" />
+    <Compile Include="Factory\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\Invoice.cs" />
+    <Compile Include="Factory\silverOrderInvoice.cs" />
+    <Compile Include="Factory\standardOrderInvoice.cs" />
     <Compile Include="Business Layer\Order\GoldOrder.cs" />
     <Compile Include="Business Layer\Order\OrderContext.cs" />
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
