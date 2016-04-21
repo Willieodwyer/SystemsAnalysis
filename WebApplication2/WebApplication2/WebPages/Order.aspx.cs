@@ -13,12 +13,13 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class Order1 : System.Web.UI.Page
     {
-        static Order newOrder;
-        static List<Product> productList = new List<Product>();
+        static OrderContext newOrder;
+        static Product newProduct;
+        static Customer sessionCust;
         double price;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,15 +32,34 @@ namespace WebApplication2
         protected void btnOrder_Click(object sender, EventArgs e)
         {
             if (IsValid)
-            {
-                newOrder = new StandardOrder(1, Convert.ToInt32(lstProducts.SelectedValue), 1, "Somewhere Land",
-                    Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text), DateTime.Now);
-                newOrder.CreateOrder();
+            {//Convert.ToInt32(lstProducts.SelectedValue), Convert.ToInt32(txtPrice.Text), 1)
+                sessionCust = (Customer)Session["CustObj"];
+                newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
+                ProductDiscount pd = new ProductDiscount(newProduct);
+                if (sessionCust != null)
+                {
+                    Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
+                    newOrder = new OrderContext(
+                    sessionCust.CustomerID - 1,
+                    sessionCust.CustomerID,
+                    newProduct,
+                    1,
+                    txtAddress.Text,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text),
+                    DateTime.Now);
+                    newOrder.Order.CreateOrder();
 
-                Response.Write("Order processed!!");
-                btnOrder.Enabled = false;
-                btnAddOrder.Enabled = true;
-                btnViewOrder.Enabled = true;
+                    Response.Write("Order processed!!\n\n\n\n");
+                    btnOrder.Enabled = false;
+                    btnAddOrder.Enabled = true;
+                    btnViewOrder.Enabled = true;
+                    Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                        "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
+                    Session["OrderObj"] = newOrder.Order;
+                }
+                else
+                    Response.Write("No customer is session, please log in");
+
             }
 
         }
@@ -54,7 +74,7 @@ namespace WebApplication2
 
             string selectSQL = "SELECT * FROM [Products]";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             SqlCommand cmd = new SqlCommand(selectSQL, con);
             SqlDataReader reader;
 
@@ -66,7 +86,7 @@ namespace WebApplication2
                 {
                     ListItem newItem = new ListItem();
                     newItem.Text = "Product:" + reader["Type"];
-                    newItem.Value = reader["Price"].ToString();
+                    newItem.Value = reader["ProductID"].ToString();
                     lstProducts.Items.Add(newItem);
                     //Product localProd = new Product(reader["Type"].ToString(), reader["Name"].ToString(), Convert.ToDouble(reader["Price"]));
                     //productList.Add(localProd);
@@ -85,7 +105,7 @@ namespace WebApplication2
 
         protected void lstProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectSQL = "SELECT Price FROM [Products] WHERE ProductID = " + lstProducts.SelectedItem.Value;
+            string selectSQL = "SELECT * FROM [Products] WHERE ProductID = " + lstProducts.SelectedItem.Value;
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
             SqlCommand cmd = new SqlCommand(selectSQL, con);
@@ -103,7 +123,7 @@ namespace WebApplication2
                 reader.Close();
 
             }
-            catch (SqlException sqlEx)
+            catch (Exception sqlEx)
             {
                 Response.Write(sqlEx.Message);
             }
@@ -117,15 +137,18 @@ namespace WebApplication2
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             //Customer cust = (Customer) Session["CustomerOBJ"];
-            Discount disc = new Discount(1,1);
             if (newOrder != null)
             {
-                newOrder.AddProduct(
-                    Convert.ToInt32(lstProducts.SelectedValue), 
-                    disc.applyDiscount(Convert.ToInt32(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text))
-                    );
+                newProduct = new StandardProduct(Convert.ToInt32(lstProducts.SelectedValue), Convert.ToDouble(txtPrice.Text), lstProducts.SelectedItem.Text, 1);
+                ProductDiscount pd = new ProductDiscount(newProduct);
+                Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
 
-                Response.Write("Product processed!!");
+                newOrder.Order.AddProduct(
+                    newProduct.ProductID,
+                    pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text));
+                Response.Write("Product processed!!\n \n ");
+                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                    "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
             }
             else
                 Response.Write("new order is null????");
@@ -133,8 +156,8 @@ namespace WebApplication2
 
         protected void btnViewOrder_Click(object sender, EventArgs e)
         {
-            Session["ID"] = newOrder.OrderID;
-            Session["OrderOBJ"] = newOrder;
+            Session["ID"] = newOrder.Order.OrderID;
+            Session["OrderOBJ"] = newOrder.Order;
             Response.Redirect("OrderView.aspx");
         }
 
@@ -149,6 +172,11 @@ namespace WebApplication2
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtAddress_TextChanged(object sender, EventArgs e)
         {
 
         }

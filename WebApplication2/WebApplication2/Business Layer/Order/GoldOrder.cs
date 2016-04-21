@@ -12,24 +12,27 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+
+
+
 namespace WebApplication2
 {
     public class GoldOrder : Order
     {
         override public int OrderID { get; set; }
         override public int CustomerID { get; set; }
-        override public int ProductID { get; set; }
+        override public Product Product { get; set; }
         override public int SupplierID { get; set; }
         override public String Address { get; set; }
         override public double Amount { get; set; }
         override public DateTime Date { get; set; }
 
-        public GoldOrder(int customerID, int productID, int supplierID, String address, double amount,
+        public GoldOrder(int customerID, Product productID, int supplierID, String address, double amount,
             DateTime date)
         {
             OrderMapper.GetOrderID(this);
             CustomerID = customerID;
-            ProductID = productID;
+            Product = productID;
             SupplierID = supplierID;
             Address = address;
             Amount = amount * 0.80;
@@ -41,13 +44,13 @@ namespace WebApplication2
             return OrderMapper.CreateOrder(this);
         }
 
-        override public string EditOrder(int orderID, int customerID, int productID, int supplierID, String address, double amount,
+        override public string EditOrder(int orderID, int customerID, Product productID, int supplierID, String address, double amount,
             DateTime date)
         {
             //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
             OrderID = orderID;
             CustomerID = customerID;
-            ProductID = productID;
+            Product = productID;
             SupplierID = supplierID;
             Address = address;
             Amount = amount;

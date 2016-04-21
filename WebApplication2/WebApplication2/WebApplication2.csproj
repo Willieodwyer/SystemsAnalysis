@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -77,7 +78,9 @@
     <Content Include="WebPages\Product.aspx" />
     <Content Include="WebPages\Register User.aspx" />
     <Content Include="WebPages\SupplierView.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPages\HomePage.aspx" />
     <Content Include="WebPages\Supplier.aspx" />
   </ItemGroup>
@@ -89,7 +92,9 @@
     <Compile Include="Business Layer\Cart\WithCase.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
     <Compile Include="Business Layer\Order\GoldOrder.cs" />
+    <Compile Include="Business Layer\Order\OrderContext.cs" />
     <Compile Include="Business Layer\Order\SilverOrder.cs" />
+    <Compile Include="Business Layer\Product\Product.cs" />
     <Compile Include="Data Layer\CartMapper.cs" />
     <Compile Include="Data Layer\CustomerMapper.cs" />
     <Compile Include="Data Layer\ProductMapper.cs" />
@@ -110,7 +115,7 @@
     <Compile Include="WebPages\CatalogueView.aspx.designer.cs">
       <DependentUpon>CatalogueView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Business Layer\Discount.cs" />
+    <Compile Include="Business Layer\ProductDiscount.cs" />
     <Compile Include="WebPages\Order.aspx.cs">
       <DependentUpon>Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -143,7 +148,7 @@
     <Compile Include="Business Layer\Stock.cs" />
     <Compile Include="Business Layer\Order\StandardOrder.cs" />
     <Compile Include="Business Layer\Supplier.cs" />
-    <Compile Include="Business Layer\Product.cs" />
+    <Compile Include="Business Layer\Product\StandardProduct.cs" />
     <Compile Include="Business Layer\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPages\HomePage.aspx.cs">

@@ -6,7 +6,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Configuration;
 using System.Web.Configuration;
 using System.Text;
 
@@ -209,7 +208,7 @@ namespace WebApplication2
 
             for (int i = 0; i < pIDs.Count; i++)
             {
-                total += Product.getProductPrice(pIDs[i]) * quantities[i];
+                total += StandardProduct.getProductPrice(pIDs[i]) * quantities[i];
             }
 
             return total;
