@@ -27,6 +27,17 @@ namespace WebApplication2
             }
         }
 
+        public Order Order2
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
 
         public OrderContext(int custType, int customerID, Product productID, int supplierID, String address, double amount,
             DateTime date)

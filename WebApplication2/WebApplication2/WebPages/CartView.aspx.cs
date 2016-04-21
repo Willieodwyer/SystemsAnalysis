@@ -9,6 +9,17 @@ namespace WebApplication2.WebPages
 {
     public partial class CartView : System.Web.UI.Page
     {
+        public WebApplication2.ICart ICart
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             Cart cart = new Cart(1, 1);

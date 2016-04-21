@@ -17,6 +17,17 @@ namespace WebApplication2.WebPages
 {
     public partial class SupplierView : System.Web.UI.Page
     {
+        public WebApplication2.Supplier Supplier
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             try

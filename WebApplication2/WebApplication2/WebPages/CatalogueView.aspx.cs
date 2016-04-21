@@ -18,6 +18,18 @@ namespace WebApplication2.WebPages
     public partial class CatalogueView : System.Web.UI.Page
     {
         static Catalogue catalogue = new Catalogue();
+
+        public WebApplication2.Catalogue Catalogue
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             try

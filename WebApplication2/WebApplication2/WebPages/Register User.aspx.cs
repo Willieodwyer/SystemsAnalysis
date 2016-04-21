@@ -12,6 +12,17 @@ namespace WebApplication2.WebPages
 {
     public partial class Register_User : System.Web.UI.Page
     {
+        public WebApplication2.Customer Customer
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
 

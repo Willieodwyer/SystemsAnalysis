@@ -21,6 +21,40 @@ namespace WebApplication2.WebPages
         static Product newProduct;
         static Customer sessionCust;
         double price;
+
+        public WebApplication2.OrderContext OrderContext
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public WebApplication2.Product Product
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public WebApplication2.ProductDiscount ProductDiscount
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
