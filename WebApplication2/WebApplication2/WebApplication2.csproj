@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Factory\Invoice.aspx" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
     <Content Include="ClassDiagram3.cd" />
@@ -92,9 +93,20 @@
     <Compile Include="Business Layer\Cart\WithAccessory.cs" />
     <Compile Include="Business Layer\Cart\WithCase.cs" />
     <Compile Include="Business Layer\Catalogue.cs" />
-    <Compile Include="Business Layer\Order\GoldOrder.cs" />
-    <Compile Include="Business Layer\Order\OrderContext.cs" />
-    <Compile Include="Business Layer\Order\SilverOrder.cs" />
+    <Compile Include="Business Layer\Order\OrderDiscount.cs" />
+    <Compile Include="Factory\goldOrderInvoice.cs" />
+    <Compile Include="Factory\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\Invoice.cs" />
+    <Compile Include="Factory\silverOrderInvoice.cs" />
+    <Compile Include="Factory\standardOrderInvoice.cs" />
+    <Compile Include="Business Layer\Order\GoldOrderDiscount.cs" />
+    <Compile Include="Business Layer\Order\SilverOrderDiscount.cs" />
     <Compile Include="Business Layer\Product\Product.cs" />
     <Compile Include="Data Layer\CartMapper.cs" />
     <Compile Include="Data Layer\CustomerMapper.cs" />
@@ -147,7 +159,7 @@
       <DependentUpon>Register User.aspx</DependentUpon>
     </Compile>
     <Compile Include="Business Layer\Stock.cs" />
-    <Compile Include="Business Layer\Order\StandardOrder.cs" />
+    <Compile Include="Business Layer\Order\StandardOrderDiscount.cs" />
     <Compile Include="Business Layer\Supplier.cs" />
     <Compile Include="Business Layer\Product\StandardProduct.cs" />
     <Compile Include="Business Layer\Customer.cs" />

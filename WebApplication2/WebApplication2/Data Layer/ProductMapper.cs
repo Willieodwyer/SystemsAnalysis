@@ -14,7 +14,6 @@ namespace WebApplication2
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
-            String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
             try
             {
                 int pID = 0;
@@ -131,7 +130,7 @@ namespace WebApplication2
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            String sql = "DELETE FROM [Product] WHERE [Product] = @ProductID";
+            String sql = "DELETE FROM [Products] WHERE [ProductID] = @ProductID";
 
             //if there is an error with the data it will catch the exception and display an error
             try

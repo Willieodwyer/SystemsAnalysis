@@ -15,32 +15,89 @@ using System.Text;
 
 namespace WebApplication2
 {
-    public abstract class Order
+    public class Order
     {
-        public abstract int OrderID { get; set; }
-        public abstract int CustomerID { get; set; }
-        public abstract Product Product { get; set; }
-        public abstract int SupplierID { get; set; }
-        public abstract String Address { get; set; }
-        public abstract double Amount { get; set; }
-        public abstract DateTime Date { get; set; }
+        public int OrderID { get; set; }
+        public int CustomerID { get; set; }
+        public Product Product { get; set; }
+        public int SupplierID { get; set; }
+        public String Address { get; set; }
+        public double Amount { get; set; }
+        public DateTime Date { get; set; }
+        public OrderMapper OrderMapper { get; set; }
+        public OrderDiscount OrderDiscount { get; set; }
 
-        public OrderMapper OrderMapper
+        public Order(int customerID, Product productID, int supplierID, String address, double amount,
+            DateTime date)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            OrderDiscount = new GoldOrderDiscount();
+            OrderMapper.GetOrderID(this);
+            CustomerID = customerID;
+            Product = productID;
+            SupplierID = supplierID;
+            Address = address;
+            Amount = amount;
+            Date = date;
+
+
+            OrderDiscount.applyDiscount(this);
         }
 
-        public abstract string CreateOrder();
-        public abstract string EditOrder(int orderID, int customerID, Product productID, int supplierID, String address, double amount,
-            DateTime date);
-        public abstract string AddProduct(int pID, double amnt);
-        public abstract string RemoveProduct(int pID);
-        public abstract string PrintOrder();
+        public string CreateOrder()
+        {
+            return OrderMapper.CreateOrder(this);
+        }
+
+        public string EditOrder(int orderID, int customerID, Product productID, int supplierID, String address, double amount,
+            DateTime date)
+        {
+            //UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
+            OrderID = orderID;
+            CustomerID = customerID;
+            Product = productID;
+            SupplierID = supplierID;
+            Address = address;
+            Amount = amount;
+            Date = date;
+            return OrderMapper.EditOrder(this);
+
+        }
+
+        public string AddProduct(int pID, double amnt)
+        {
+            return OrderMapper.AddProduct(this, pID, amnt);
+        }
+
+
+        public string RemoveProduct(int pID)
+        {
+            return OrderMapper.RemoveProduct(this, pID);
+        }
+
+        public string PrintOrder()
+        {
+            string retString = "";
+            try
+            {
+                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
+                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Order] WHERE OrderID = " + this.OrderID, sqlConnection);
+                sqlConnection.Open();
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    //OrderID	CustomerID	ProductID	Address	Amount	OrderDate	SupplierID
+                    retString = retString + reader["OrderID"] + "," + reader["CustomerID"]
+                    + "," + reader["ProductID"] + "," + reader["Address"] + "," + reader["Amount"] + "," + reader["OrderDate"] + "," + reader["SupplierID"];
+                }
+                return retString;
+            }
+            catch (SqlException sept)
+            {
+                return sept.Message;
+            }
+        }
     }
 }
