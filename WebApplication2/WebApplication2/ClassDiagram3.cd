@@ -39,7 +39,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.Catalogue">
-    <Position X="23.5" Y="9.5" Width="1.5" />
+    <Position X="22.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Business Layer\Catalogue.cs</FileName>
@@ -55,56 +55,26 @@
       <Property Name="CustomerMapper" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="WebApplication2.GoldOrder">
-    <Position X="2.75" Y="12.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
-      <FileName>Business Layer\Order\GoldOrder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WebApplication2.Order">
-    <Position X="5" Y="8.25" Width="1.5" />
+    <Position X="3.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAABAAAA=</HashCode>
+      <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAABADhCAAAABAAAA=</HashCode>
       <FileName>Business Layer\Order\Order.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="OrderMapper" />
+      <Property Name="OrderDiscount" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="WebApplication2.OrderContext">
-    <Position X="6.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAEAAAAAAAAAAAAAAAQAAACAEACAAAADACAAAAAAAAA=</HashCode>
-      <FileName>Business Layer\Order\OrderContext.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Order2" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="WebApplication2.SilverOrder">
-    <Position X="6.25" Y="12.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
-      <FileName>Business Layer\Order\SilverOrder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WebApplication2.StandardOrder">
-    <Position X="4.5" Y="12.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACABAAAAAQAAAAAAAIQACAEAAAAAADhCAAAAAAAAA=</HashCode>
-      <FileName>Business Layer\Order\StandardOrder.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.Product">
-    <Position X="12.5" Y="3.5" Width="1.5" />
+    <Position X="4" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAgAAQAAAAAAAAAAAIgAAEAAAAAAASAAAAAAAAA=</HashCode>
       <FileName>Business Layer\Product\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.StandardProduct">
-    <Position X="9.25" Y="4" Width="1.5" />
+    <Position X="7.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAQAiAAQAAAAAAAAAAAIgAAEAAAAAAASAAAAAAAAA=</HashCode>
       <FileName>Business Layer\Product\StandardProduct.cs</FileName>
@@ -114,14 +84,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.ProductDiscount">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAA=</HashCode>
       <FileName>Business Layer\ProductDiscount.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.Stock">
-    <Position X="15.75" Y="13.25" Width="1.5" />
+    <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAKAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAAAAA=</HashCode>
       <FileName>Business Layer\Stock.cs</FileName>
@@ -131,7 +101,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.Supplier">
-    <Position X="12.75" Y="10.25" Width="1.5" />
+    <Position X="13.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAIgAAAAAAAAAAAAAAAAAAQAAAEAAAACACAAAAAAACA=</HashCode>
       <FileName>Business Layer\Supplier.cs</FileName>
@@ -155,28 +125,28 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.OrderMapper">
-    <Position X="7.25" Y="8.75" Width="1.5" />
+    <Position X="6.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAQAAAQYAAAAAAIQAAAAAAAEAAAgAAAAAAAABA=</HashCode>
       <FileName>Data Layer\OrderMapper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.ProductMapper">
-    <Position X="9" Y="1.25" Width="1.5" />
+    <Position X="7.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAiAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAIAAAAE=</HashCode>
       <FileName>Data Layer\ProductMapper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.StockMapper">
-    <Position X="18" Y="13.25" Width="1.5" />
+    <Position X="17.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Data Layer\StockMapper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication2.SupplierMapper">
-    <Position X="15.75" Y="10.25" Width="1.5" />
+    <Position X="16.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAgAEAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Data Layer\SupplierMapper.cs</FileName>
@@ -193,7 +163,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.CatalogueView">
-    <Position X="21" Y="9.5" Width="1.5" />
+    <Position X="19.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAgCAEAIAIAgAACCAAAYCAAAAAAAJAAAAICAEA=</HashCode>
       <FileName>WebPages\CatalogueView.aspx.cs</FileName>
@@ -213,19 +183,27 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.Order1">
-    <Position X="2" Y="1" Width="1.5" />
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Order" Type="WebApplication2.Order" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.844" Y="9.107" />
+        <Point X="0.844" Y="9.482" />
+        <Point X="4.188" Y="9.482" />
+        <Point X="4.188" Y="10.25" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>gAADAAAgEEEIAgAAggAhCEAoYCAYAIAgALAECBISYMg=</HashCode>
+      <HashCode>gAEDAAAgEEEIAgAAggAhCEAoYCAIAIAgALAECBISYMg=</HashCode>
       <FileName>WebPages\Order.aspx.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="OrderContext" />
       <Property Name="Product" />
       <Property Name="ProductDiscount" />
+      <Property Name="Order" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.OrderView">
-    <Position X="0.5" Y="10" Width="1.5" />
+    <Position X="1" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIEAAAAgAAEAAAAAgAAACAAAYCAAAAAAAJAAAAIAAEA=</HashCode>
       <FileName>WebPages\OrderView.aspx.cs</FileName>
@@ -235,7 +213,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.AddProduct">
-    <Position X="15.75" Y="0.75" Width="2.25" />
+    <Position X="11.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACCAAgBEGQCLAggAEBCAADYCAAAJAAAPAACAIQUsA=</HashCode>
       <FileName>WebPages\Product.aspx.cs</FileName>
@@ -255,7 +233,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.AddSupplier">
-    <Position X="10" Y="10" Width="1.5" />
+    <Position X="10.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gwEAAAAgAAEBAIAAgAADCAAKYCAAYIAgAJAEGAIEAEQ=</HashCode>
       <FileName>WebPages\Supplier.aspx.cs</FileName>
@@ -265,7 +243,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebApplication2.WebPages.SupplierView">
-    <Position X="12.75" Y="13.75" Width="1.5" />
+    <Position X="13.5" Y="13.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAgAAEAAIAAgAAACAAAYCAAAAAAAJAAAAIAAEA=</HashCode>
       <FileName>WebPages\SupplierView.aspx.cs</FileName>
@@ -273,6 +251,34 @@
     <ShowAsAssociation>
       <Property Name="Supplier" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="WebApplication2.OrderDiscount">
+    <Position X="7" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Business Layer\Order\OrderDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.SilverOrderDiscount">
+    <Position X="6.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Business Layer\Order\SilverOrderDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.StandardOrderDiscount">
+    <Position X="4.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Business Layer\Order\StandardOrderDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication2.GoldOrderDiscount">
+    <Position X="8.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Business Layer\Order\GoldOrderDiscount.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
