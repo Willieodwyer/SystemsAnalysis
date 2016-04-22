@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
 namespace WebApplication2.Business_Layer
 {
-    public class standardOrderInvoice
+    public class standardOrderInvoice : iInvoice
     {
         public int orderID { get; set; }
         public int price;
@@ -18,11 +19,6 @@ namespace WebApplication2.Business_Layer
         public standardOrderInvoice(int ID)
         {
             orderID = ID;
-        }
-
-        public static standardOrderInvoice createStdInvoice(int ID)
-        {
-            return new standardOrderInvoice(ID);
         }
 
         public void setPrice()
@@ -73,6 +69,39 @@ namespace WebApplication2.Business_Layer
         public void setDate() //set attr
         {
             OrderDate = OrderMapper.GetOrderDate(orderID);
+        }
+
+        public void print()
+        {
+            string filename = orderID + ".txt";
+            string directory = @"C:\Invoices\";
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            string path = directory + filename;
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine("Standard Invoice: ");
+                    sw.WriteLine(" ");
+                    sw.WriteLine("Order Number: " + orderID);
+                    sw.WriteLine("Address: " + address);
+                    sw.WriteLine("Product Number: " + pID);
+                    sw.WriteLine("Customer ID: " + custID);
+                    sw.WriteLine("Amount: " + price);
+                    sw.WriteLine("");
+                    sw.WriteLine("Please retain this invoice for your records.");
+                }
+                System.Diagnostics.Process.Start(path);
+            }
+            else
+                System.Diagnostics.Process.Start(path); 
+
         }
     }
 }
