@@ -14,22 +14,22 @@ namespace WebApplication2
         public String Address { get; set; }
         public int PhoneNum { get; set; }
         public String Notes { get; set; }
-
         public String Username { get; set; }
         public String Password { get; set; }
+        public CustomerMapper CustomerMapper { get; set; }
 
-        public CustomerMapper CustomerMapper
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+        private static Customer instance = null;
+            
+        public static Customer getInstance(int customerID, String name, String address, int phoneNum, 
+            String notes, String username,String password){
+                if (instance == null)
+                {
+                    instance = new Customer(customerID, name, address, phoneNum, notes, username, password);
+                }
+                return instance;
         }
 
-        public Customer(int customerID, String name, String address, int phoneNum, String notes, String username,
+        protected Customer(int customerID, String name, String address, int phoneNum, String notes, String username,
                         String password)
         {
             CustomerMapper.getCustomerID(this);
@@ -63,5 +63,7 @@ namespace WebApplication2
         {
             return CustomerMapper.DeleteCustomer(this);
         }
+
+    
     }
 }

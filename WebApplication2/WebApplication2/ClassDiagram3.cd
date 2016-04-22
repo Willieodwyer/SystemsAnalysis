@@ -48,7 +48,7 @@
   <Class Name="WebApplication2.Customer">
     <Position X="25.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAgAAQAAAAAAgAABQAAAAQAECAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAgAAQAAAAAAgAABQAAAAQAECBAAAQCAAAAAAAAAAA=</HashCode>
       <FileName>Business Layer\Customer.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

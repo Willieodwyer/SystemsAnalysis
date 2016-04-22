@@ -58,7 +58,7 @@ namespace WebApplication2.WebPages
                 valid = true;
                 while (reader.Read())
                 {
-                    newCust = new Customer(Convert.ToInt32(reader["CustomerID"]), reader["Name"].ToString(), reader["Address"].ToString(),
+                    newCust = Customer.getInstance(Convert.ToInt32(reader["CustomerID"]), reader["Name"].ToString(), reader["Address"].ToString(),
                         Convert.ToInt32(reader["PhoneNumber"]),reader["Notes"].ToString(),reader["EmailAddress"].ToString(),reader["Password"].ToString());
            
                 }
