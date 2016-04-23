@@ -17,10 +17,44 @@ namespace WebApplication2.WebPages
 {
     public partial class Order1 : System.Web.UI.Page
     {
-        static OrderContext newOrder;
+        static Order newOrder;
         static Product newProduct;
         static Customer sessionCust;
         double price;
+
+        public WebApplication2.Product Product
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public WebApplication2.ProductDiscount ProductDiscount
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public WebApplication2.Order Order
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -39,23 +73,22 @@ namespace WebApplication2.WebPages
                 if (sessionCust != null)
                 {
                     Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
-                    newOrder = new OrderContext(
-                    sessionCust.CustomerID - 1,
+                    newOrder = new Order(
                     sessionCust.CustomerID,
                     newProduct,
                     1,
                     txtAddress.Text,
                     pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text),
                     DateTime.Now);
-                    newOrder.Order.CreateOrder();
+                    newOrder.CreateOrder();
 
                     Response.Write("Order processed!!\n\n\n\n");
                     btnOrder.Enabled = false;
                     btnAddOrder.Enabled = true;
                     btnViewOrder.Enabled = true;
-                    Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                    Response.Write("Calculating Customer Discount - " + newOrder.Amount +
                         "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
-                    Session["OrderObj"] = newOrder.Order;
+                    Session["OrderObj"] = newOrder;
                 }
                 else
                     Response.Write("No customer is in session, please log in");
@@ -143,11 +176,11 @@ namespace WebApplication2.WebPages
                 ProductDiscount pd = new ProductDiscount(newProduct);
                 Response.Write("Calculating Individual Product DIscount - " + pd.applyDiscount() + "/" + newProduct.Price + " Pid = " + newProduct.ProductID + "\n");
 
-                newOrder.Order.AddProduct(
+                newOrder.AddProduct(
                     newProduct.ProductID,
                     pd.applyDiscount() * Convert.ToInt32(txtQuantity.Text));
                 Response.Write("Product processed!!\n \n ");
-                Response.Write("Calculating Customer Discount - " + newOrder.Order.Amount +
+                Response.Write("Calculating Customer Discount - " + newOrder.Amount +
                     "/" + (Convert.ToDouble(txtPrice.Text) * Convert.ToInt32(txtQuantity.Text)) + "\n");
             }
             else
@@ -156,8 +189,8 @@ namespace WebApplication2.WebPages
 
         protected void btnViewOrder_Click(object sender, EventArgs e)
         {
-            Session["ID"] = newOrder.Order.OrderID;
-            Session["OrderOBJ"] = newOrder.Order;
+            Session["ID"] = newOrder.OrderID;
+            Session["OrderOBJ"] = newOrder;
             Response.Redirect("OrderView.aspx");
         }
 

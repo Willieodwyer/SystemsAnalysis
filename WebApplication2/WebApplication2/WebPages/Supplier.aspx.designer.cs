@@ -10,7 +10,7 @@
 namespace WebApplication2.WebPages {
     
     
-    public partial class WebForm1 {
+    public partial class AddSupplier {
         
         /// <summary>
         /// form1 control.
