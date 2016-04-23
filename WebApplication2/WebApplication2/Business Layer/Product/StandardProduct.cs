@@ -15,6 +15,17 @@ namespace WebApplication2
         override public string Type { get; set; }
         override public int SupplierID { get; set; }
 
+        public ProductMapper ProductMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public StandardProduct(int productID, double price, string type, int supplierID)
         {
             ProductID = productID;

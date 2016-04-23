@@ -18,6 +18,17 @@ namespace WebApplication2.WebPages
 {
     public partial class OrderView : System.Web.UI.Page
     {
+        public WebApplication2.Order Order
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             //Order sentOrder = (Order) Session["OrderOBJ"];

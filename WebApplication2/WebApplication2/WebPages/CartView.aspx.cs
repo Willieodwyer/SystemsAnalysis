@@ -16,6 +16,17 @@ namespace WebApplication2.WebPages
         static Customer sessionCust;
 
 
+        public WebApplication2.ICart ICart
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             sessionCust = (Customer)Session["CustOBJ"];

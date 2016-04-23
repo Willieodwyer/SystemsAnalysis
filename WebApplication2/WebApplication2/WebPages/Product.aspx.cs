@@ -16,9 +16,21 @@ using System.Text;
 
 namespace WebApplication2.WebPages
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class AddProduct : System.Web.UI.Page
     {
         static Product p;
+
+        public WebApplication2.Product Product
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)

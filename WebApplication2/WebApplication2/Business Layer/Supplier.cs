@@ -23,6 +23,17 @@ namespace WebApplication2
         public double PhoneNum { get; set; }
         public String Notes { get; set; }
 
+        public SupplierMapper SupplierMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public Supplier(String name, String address, double phoneNum, String notes)
         {
             SupplierMapper.GetSupplierID(this);

@@ -10,7 +10,7 @@
 namespace WebApplication2.WebPages {
     
     
-    public partial class WebForm2 {
+    public partial class HomePage {
         
         /// <summary>
         /// form1 control.

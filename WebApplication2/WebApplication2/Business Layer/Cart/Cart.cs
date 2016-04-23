@@ -13,6 +13,17 @@ namespace WebApplication2
         public int CustomerID { get; set; }
         public int CartID { get; set; }
 
+        public CartMapper CartMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public Cart(int customerID, int cartID)
         {
             CartMapper.getCartID(this);

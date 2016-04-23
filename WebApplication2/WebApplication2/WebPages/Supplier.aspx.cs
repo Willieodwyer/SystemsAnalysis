@@ -16,10 +16,21 @@ using System.Text;
 
 namespace WebApplication2.WebPages
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class AddSupplier : System.Web.UI.Page
     {
 
         static Supplier newSupp;
+
+        public WebApplication2.Supplier Supplier
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
