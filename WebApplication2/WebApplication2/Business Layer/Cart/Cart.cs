@@ -55,9 +55,24 @@ namespace WebApplication2
         }
 
 
-        public override double getTotal()
+        public override double getTotal(int custID)
         {
-            return CartMapper.getTotal(this);
+            return CartMapper.getTotal(custID);
+        }
+
+        public string emptyCart(int custID)
+        {
+            return CartMapper.emptyCart(this, custID);
+        }
+
+        public Boolean checkWithCase(int custID)
+        {
+            return CartMapper.checkWithCase(this, custID);
+        }
+
+        public Boolean checkWithAccessory(int custID)
+        {
+            return CartMapper.checkWithAccessory(this, custID);
         }
     }
 

@@ -35,8 +35,8 @@ namespace WebApplication2.WebPages
             //Response.Write(sentOrder.PrintOrder());
             try
             {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
+                SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            
                 Order sessionOrd = (Order)Session["OrderObj"];
                 SqlCommand sqlCommand;
                 if (sessionOrd == null)

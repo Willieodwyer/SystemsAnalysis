@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication2.Business_Layer
+namespace WebApplication2
 {
     public class goldOrderInvoice
     {
@@ -15,7 +15,7 @@ namespace WebApplication2.Business_Layer
         public string address;
         public DateTime OrderDate;
 
-        public goldOrderInvoice(int ID)
+        private goldOrderInvoice(int ID)
         {
             orderID = ID;
         }

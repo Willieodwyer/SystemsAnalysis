@@ -17,10 +17,10 @@ namespace WebApplication2
 
         }
 
-        public override double getTotal()
+        public override double getTotal(int custID)
         {
             Console.WriteLine("With Accessory decorator invoked.");
-            return base.getTotal() * 0.98;
+            return base.getTotal(custID) * 0.98;
         }
     } 
 }

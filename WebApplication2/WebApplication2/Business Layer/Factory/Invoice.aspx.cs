@@ -31,7 +31,7 @@ namespace WebApplication2.Business_Layer
                 inv.setAddress();
 
                 string filename = oID + ".txt";
-                string path = @"C:\Users\Windows 8\Documents\VStest\" + filename;
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -63,7 +63,7 @@ namespace WebApplication2.Business_Layer
                 inv.setAddress();
 
                 string filename = oID + ".txt";
-                string path = @"C:\Users\Windows 8\Documents\VStest\" + filename;
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -95,7 +95,7 @@ namespace WebApplication2.Business_Layer
                 inv.setAddress();
 
                 string filename = oID + ".txt";
-                string path = @"C:\Users\Windows 8\Documents\VStest\" + filename;
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.

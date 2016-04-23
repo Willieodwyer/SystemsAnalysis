@@ -21,7 +21,7 @@
             <br />
             <br />
     
-        <asp:Label ID="lblNotes0" runat="server" Font-Bold="True" Font-Size="Medium" Text="Select a Supplier to edit otherwise enter details for new supplier below." Width="170px"></asp:Label>
+        <asp:Label ID="lblNotes0" runat="server" Font-Bold="True" Font-Size="Medium" Text="Select a product to edit otherwise enter details for new supplier below." Width="170px"></asp:Label>
             <asp:DropDownList ID="lstProducts"
                 runat="server"
                 Width="256px"

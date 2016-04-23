@@ -7,6 +7,6 @@ namespace WebApplication2
 {
     public abstract class ICart
     {
-        public abstract double getTotal();
+        public abstract double getTotal(int custID);
     }
 }

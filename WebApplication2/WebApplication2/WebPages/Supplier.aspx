@@ -20,6 +20,7 @@
             <asp:Button ID="Button17" runat="server" Text="View Suppliers" PostBackUrl="~/WebPages/SupplierView.aspx"  CausesValidation="False"/>
             <br />
             <br />
+            <h2>Add a Supplier</h2>
             <asp:Label "/>="lblNotes0" runat="server" Font-Bold="True" Font-Size="Medium" Text="Select a Supplier to edit otherwise enter details for new supplier below." Width="170px"></asp:Label>
             <asp:DropDownList ID="lstSuppliers"
                 runat="server"

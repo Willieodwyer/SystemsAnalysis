@@ -20,14 +20,22 @@
             <asp:Button ID="Button17" runat="server" Text="View Suppliers" PostBackUrl="~/WebPages/SupplierView.aspx"  CausesValidation="False"/>
             <br />
             <br />
+            <br />
+        <h2>Cart</h2>
+            <asp:GridView ID="GridView1" runat="server">
+            </asp:GridView>
+            
+
+            <br />
     
+
+
         <asp:Label ID="lblTotal" runat="server" ></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="Button18" runat="server" Text="Empty Cart" OnClick="EmptyCart_Click"/>
         <br />
-        <asp:Label ID="lblTotalWithCase" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblTotalWithAccessory" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblTotalWithDiscount" runat="server" ></asp:Label>
+        
     
     </div>
     </form>
