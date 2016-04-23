@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using WebApplication2;
+using System.Configuration;
 
 namespace WebApplication2.WebPages
 {
@@ -29,8 +30,8 @@ namespace WebApplication2.WebPages
 
             try
             {
-                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=c:\Users\Windows 8\Documents\Visual Studio 2013\Projects\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
-
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            
                 String sql = "INSERT INTO Customer VALUES(@Name, @Address, @PhoneNumber, @Notes, @EmailAddress, @Password)";
                 connection.Open();
 

@@ -14,7 +14,7 @@ namespace WebApplication2
         {
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
-            String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
+            //String sql = "INSERT INTO [Products] VALUES(@Price, @Type,NULL)";
             try
             {
                 int pID = 0;
@@ -212,6 +212,42 @@ namespace WebApplication2
             {
                 Console.WriteLine(sqlEx.Message);
                 return 0.0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static String getProductType(int pID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            String sql = "SELECT Type FROM [Products] WHERE ProductID = @ProductID";
+            String type = "";
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+
+            try
+            {
+                connection.Open();
+
+                command.Parameters.Add("@ProductID", SqlDbType.Int);
+                command.Parameters["@ProductID"].Value = pID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    type = reader.GetString(0);
+                }
+
+                reader.Close();
+                return type;
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine(sqlEx.Message);
+                return "";
             }
             finally
             {

@@ -103,6 +103,15 @@ namespace WebApplication2.WebPages {
         protected global::System.Web.UI.WebControls.Button Button17;
         
         /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
         /// lblTotal control.
         /// </summary>
         /// <remarks>
@@ -112,30 +121,12 @@ namespace WebApplication2.WebPages {
         protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
-        /// lblTotalWithCase control.
+        /// Button18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalWithCase;
-        
-        /// <summary>
-        /// lblTotalWithAccessory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalWithAccessory;
-        
-        /// <summary>
-        /// lblTotalWithDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalWithDiscount;
+        protected global::System.Web.UI.WebControls.Button Button18;
     }
 }

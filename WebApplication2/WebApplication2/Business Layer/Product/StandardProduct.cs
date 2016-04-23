@@ -61,5 +61,10 @@ namespace WebApplication2
             return ProductMapper.getProductPrice(pID);
         }
 
+        public static String getProductType(int pID)
+        {
+            return ProductMapper.getProductType(pID);
+        }
+
     }
 }
