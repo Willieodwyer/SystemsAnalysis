@@ -12,11 +12,9 @@ namespace WebApplication2.WebPages
 {
     public partial class CartView : System.Web.UI.Page
     {
-        static OrderContext newOrder;
-        static Product newProduct;
         static Cart cart;
         static Customer sessionCust;
-        double price;
+
 
         public WebApplication2.ICart ICart
         {

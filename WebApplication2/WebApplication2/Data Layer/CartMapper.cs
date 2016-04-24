@@ -275,9 +275,9 @@ namespace WebApplication2
 
             for (int i = 0; i < pIDs.Count; i++)
             {
-                if (StandardProduct.getProductType(pIDs[i]).Equals("Phone"))
+                if (StandardProduct.getProductType(pIDs[i]).Contains("Phone"))
                     hasPhone = true;
-                else if (StandardProduct.getProductType(pIDs[i]).Equals("Case"))
+                else if (StandardProduct.getProductType(pIDs[i]).Contains("Case"))
                     hasCase = true;
                 
             }
@@ -321,9 +321,9 @@ namespace WebApplication2
 
             for (int i = 0; i < pIDs.Count; i++)
             {
-                if (StandardProduct.getProductType(pIDs[i]).Equals("Phone"))
+                if (StandardProduct.getProductType(pIDs[i]).Contains("Phone"))
                     hasPhone = true;
-                else if (StandardProduct.getProductType(pIDs[i]).Equals("Accessory"))
+                else if (StandardProduct.getProductType(pIDs[i]).Contains("Accessory"))
                     hasAccessory = true;
 
             }

@@ -30,7 +30,7 @@ namespace WebApplication2.WebPages
     
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.Form.DefaultButton = this.Button1.UniqueID;
         }
 
         protected bool checkDetails(string email, string password)
@@ -74,7 +74,7 @@ namespace WebApplication2.WebPages
                 if (newCust != null)
                 {
                     Session["CustObj"] = newCust;
-                    Response.Redirect("Order.aspx", true);
+                    Response.Redirect("CatalogueView.aspx", true);
                 }
                 else
                     loginSuccess.Text = "cust is null";
