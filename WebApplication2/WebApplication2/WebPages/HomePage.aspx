@@ -20,10 +20,10 @@
             <asp:Button ID="Button17" runat="server" Text="View Suppliers" PostBackUrl="~/WebPages/SupplierView.aspx"  CausesValidation="False"/>
             <br />
             <br />
-    <h1>Login page:</h1>
+    <h2>Login</h2>
         <p>
             <asp:Label ID="Label1" runat="server" Text="Email:"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
         </p>
         <p>
@@ -31,13 +31,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
         </p>
-        <p style="margin-left: 160px">
+             <p style="margin-left: 120px">
             <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Login" />
         </p>
-        <p style="margin-left: 160px">
+             <p style="margin-left: 120px">
             <asp:Label ID="loginSuccess" runat="server"></asp:Label>
-        </p>
-        <p style="margin-left: 160px">&nbsp;</p>
+                 &nbsp;</p>
 
     </div>
     </form>

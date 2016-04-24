@@ -24,6 +24,10 @@
         <h2>Catalogue</h2>
         <asp:Label ID="lblSearch" runat="server" Text="Search" Font-Bold="True" Width="173px" Font-Size="Medium"></asp:Label>
         <asp:TextBox ID="txtSearch" runat="server" Width="170px" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+        <asp:Label ID="lblEuro" runat="server" Text="Note: All prices in Euro(€)" Font-Bold="true" Font-Size="Medium"></asp:Label>
         <asp:GridView ID="GridView2" runat="server"></asp:GridView>
 
 
