@@ -81,5 +81,10 @@ namespace WebApplication2.WebPages
             else
                 loginSuccess.Text = "Username/Password Incorrect!";
         }
+
+        protected void Button18_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Invoice.aspx", true);
+        }
     }
 }
