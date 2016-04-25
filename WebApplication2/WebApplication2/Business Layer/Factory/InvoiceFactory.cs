@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MobilePhoneRetailer.DataLayer;
+using MobilePhoneRetailer.BusinessLayer.Factory;
 
-namespace WebApplication2.Business_Layer
+namespace MobilePhoneRetailer.Business_Layer
 {
     public class InvoiceFactory
     {

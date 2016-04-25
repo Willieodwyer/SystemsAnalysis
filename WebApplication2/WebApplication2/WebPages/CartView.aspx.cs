@@ -7,8 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MobilePhoneRetailer.BusinessLayer.Cart;
+using MobilePhoneRetailer.BusinessLayer;
 
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class CartView : System.Web.UI.Page
     {
@@ -16,7 +18,7 @@ namespace WebApplication2.WebPages
         static Customer sessionCust;
 
 
-        public WebApplication2.ICart ICart
+        public ICart ICart
         {
             get
             {

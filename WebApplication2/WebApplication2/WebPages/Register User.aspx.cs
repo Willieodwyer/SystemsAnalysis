@@ -6,14 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using WebApplication2;
+using MobilePhoneRetailer;
 using System.Configuration;
+using MobilePhoneRetailer.BusinessLayer;
 
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class Register_User : System.Web.UI.Page
     {
-        public WebApplication2.Customer Customer
+        public Customer Customer
         {
             get
             {

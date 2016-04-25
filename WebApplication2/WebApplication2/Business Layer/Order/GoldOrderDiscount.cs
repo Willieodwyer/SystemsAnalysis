@@ -15,7 +15,7 @@ using System.Text;
 
 
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer.Order
 {
     public class GoldOrderDiscount : OrderDiscount
     {

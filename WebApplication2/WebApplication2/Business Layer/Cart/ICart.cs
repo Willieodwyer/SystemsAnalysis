@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer.Cart
 {
     public abstract class ICart
     {

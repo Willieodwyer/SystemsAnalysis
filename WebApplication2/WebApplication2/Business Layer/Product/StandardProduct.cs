@@ -5,8 +5,9 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer
 {
     public class StandardProduct : Product
     {

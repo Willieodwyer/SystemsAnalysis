@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.DataLayer
 {
     public class ProductMapper
     {

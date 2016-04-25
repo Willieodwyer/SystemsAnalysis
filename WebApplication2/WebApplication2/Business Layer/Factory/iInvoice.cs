@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2.Business_Layer
+namespace MobilePhoneRetailer.BusinessLayer.Factory
 {
     public interface iInvoice
     {

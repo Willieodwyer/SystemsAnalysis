@@ -8,16 +8,17 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using MobilePhoneRetailer.BusinessLayer;
 
 
 
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class HomePage : System.Web.UI.Page
     {
         public static Customer newCust;
 
-        public WebApplication2.Customer Customer
+        public Customer Customer
         {
             get
             {

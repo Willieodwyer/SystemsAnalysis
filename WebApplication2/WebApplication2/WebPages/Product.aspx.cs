@@ -14,13 +14,14 @@ using System.Web.Configuration;
 using System.Text;
 
 
-namespace WebApplication2.WebPages
+
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class AddProduct : System.Web.UI.Page
     {
         static Product p;
 
-        public WebApplication2.Product Product
+        public Product Product
         {
             get
             {

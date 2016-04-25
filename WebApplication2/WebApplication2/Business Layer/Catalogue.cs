@@ -12,8 +12,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer
 {
     public class Catalogue
     {

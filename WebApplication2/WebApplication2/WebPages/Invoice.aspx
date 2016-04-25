@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="WebApplication2.Business_Layer.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="MobilePhoneRetailer.Business_Layer.WebForm1" %>
 
 <!DOCTYPE html>
 

@@ -12,9 +12,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.DataLayer;
 
-//@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\workarea\SystemsAnalysis-master\SystemsAnalysis-master\WebApplication2\WebApplication2\App_Data\Database2.mdf;Integrated Security=True"
-namespace WebApplication2
+namespace MobilePhoneRetailer
 {
     public class ProductDiscount
     {

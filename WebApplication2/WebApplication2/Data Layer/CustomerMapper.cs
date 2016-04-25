@@ -5,8 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using MobilePhoneRetailer.BusinessLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.DataLayer
 {
     public class CustomerMapper
     {

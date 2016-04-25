@@ -12,8 +12,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.BusinessLayer;
+using MobilePhoneRetailer.BusinessLayer.Order;
 
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class Order1 : System.Web.UI.Page
     {
@@ -22,7 +24,7 @@ namespace WebApplication2.WebPages
         static Customer sessionCust;
         double price;
 
-        public WebApplication2.Product Product
+        public Product Product
         {
             get
             {
@@ -33,7 +35,7 @@ namespace WebApplication2.WebPages
             }
         }
 
-        public WebApplication2.ProductDiscount ProductDiscount
+        public ProductDiscount ProductDiscount
         {
             get
             {
@@ -44,7 +46,7 @@ namespace WebApplication2.WebPages
             }
         }
 
-        public WebApplication2.Order Order
+        public Order Order
         {
             get
             {
