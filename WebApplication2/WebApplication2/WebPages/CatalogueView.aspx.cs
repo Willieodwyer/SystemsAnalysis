@@ -86,5 +86,11 @@ namespace WebApplication2.WebPages
             else
                 Response.Write("Error: no customer is in session.");
         }
+
+        protected void Button18_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Invoice.aspx", true);
+        }
     }
+
 }
