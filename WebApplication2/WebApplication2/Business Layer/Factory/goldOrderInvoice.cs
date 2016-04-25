@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
 namespace WebApplication2
 {
-    public class goldOrderInvoice
+    public class goldOrderInvoice : WebApplication2.Business_Layer.iInvoice
     {
         public int orderID { get; set; }
         public int price;
@@ -15,15 +16,11 @@ namespace WebApplication2
         public string address;
         public DateTime OrderDate;
 
-        private goldOrderInvoice(int ID)
+        public goldOrderInvoice(int ID)
         {
             orderID = ID;
         }
 
-        public static goldOrderInvoice createGoldInvoice(int ID)
-        {
-            return new goldOrderInvoice(ID);
-        }
 
         public void setPrice()
         {
@@ -73,6 +70,38 @@ namespace WebApplication2
         public void setDate() //set attr
         {
             OrderDate = OrderMapper.GetOrderDate(orderID);
+        }
+
+        public void print()
+        {
+                string filename = orderID + ".txt";
+                string directory = @"C:\Invoices\";
+
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                string path = directory + filename;
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine("Gold Invoice: ");
+                        sw.WriteLine(" ");
+                        sw.WriteLine("Order Number: " + orderID);
+                        sw.WriteLine("Address: " + address);
+                        sw.WriteLine("Product Number: " + pID);
+                        sw.WriteLine("Customer ID: " + custID);
+                        sw.WriteLine("Amount: " + price);
+                        sw.WriteLine("");
+                        sw.WriteLine("Please retain this invoice for your records.");
+                    }
+                    System.Diagnostics.Process.Start(path);
+                }
+                else
+                    System.Diagnostics.Process.Start(path); 
         }
     }
 }
