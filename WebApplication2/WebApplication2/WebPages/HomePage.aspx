@@ -18,8 +18,13 @@
             <asp:Button ID="Button15" runat="server" Text="Add New Product" PostBackUrl="~/WebPages/Product.aspx"  CausesValidation="False"/>
             <asp:Button ID="Button16" runat="server" Text="Add Supplier" PostBackUrl="~/WebPages/Supplier.aspx"  CausesValidation="False"/>
             <asp:Button ID="Button17" runat="server" Text="View Suppliers" PostBackUrl="~/WebPages/SupplierView.aspx"  CausesValidation="False"/>
+<<<<<<< HEAD
             <asp:Button ID="InvoiceButton" runat="server" OnClick="Button18_Click" Text="View Invoices" />    
         <br />
+=======
+             <asp:Button ID="InvoiceButton" runat="server" OnClick="Button18_Click" Text="View Invoices" />
+            <br />
+>>>>>>> b74ee4d3449b0ce7751f6212542f1a3eba924989
             <br />
     <h2>Login</h2>
         <p>
