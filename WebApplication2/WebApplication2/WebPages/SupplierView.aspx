@@ -19,6 +19,7 @@
             <asp:Button ID="Button17" runat="server" Text="View Suppliers" PostBackUrl="~/WebPages/SupplierView.aspx"  CausesValidation="False"/>
             <br />
             <br />
+        <h2>View Suppliers</h2>
         <asp:GridView ID="GridView1" runat="server"></asp:GridView>
     </div>
     </form>

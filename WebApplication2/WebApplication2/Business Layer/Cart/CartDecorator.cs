@@ -14,9 +14,9 @@ namespace WebApplication2
             cBase = c; 
         }
  
-        public override double getTotal()
+        public override double getTotal(int custID)
         {
-            return cBase.getTotal(); 
+            return cBase.getTotal(custID); 
         }
     }
 }

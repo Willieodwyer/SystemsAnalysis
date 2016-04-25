@@ -5,8 +5,11 @@ using System.Web;
 
 namespace WebApplication2
 {
-    public abstract class ICart
+    public class Invoice
     {
-        public abstract double getTotal(int custID);
+        /*public int getOrderInfo()
+        {
+            //return this.orderID;
+        }*/
     }
 }

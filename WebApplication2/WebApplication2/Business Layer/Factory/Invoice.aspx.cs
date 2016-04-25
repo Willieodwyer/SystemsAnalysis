@@ -21,12 +21,102 @@ namespace WebApplication2.Business_Layer
             int orderID = Convert.ToInt32(oID);
 
             string category = RadioButtonList1.SelectedValue;
-            iInvoice inv = InvoiceFactory.getInvoice(orderID, category);
-            inv.setPrice();
-            inv.setCustID();
-            inv.setProductID();
-            inv.setAddress();
-            inv.print();
+            if(category == "Gold")
+            {
+                goldOrderInvoice inv = goldOrderInvoice.createGoldInvoice(orderID);
+
+                inv.setPrice();
+                inv.setCustID();
+                inv.setProductID();
+                inv.setAddress();
+
+                string filename = oID + ".txt";
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine("Gold Invoice: ");
+                        sw.WriteLine(" ");
+                        sw.WriteLine("Order Number: " + oID);
+                        sw.WriteLine("Address: " + inv.getAddress());
+                        sw.WriteLine("Product Number: " + inv.getProductID());
+                        sw.WriteLine("Customer ID: " + inv.getCustID());
+                        sw.WriteLine("Amount: " + inv.getPrice());
+                        sw.WriteLine("");
+                        sw.WriteLine("Please retain this invoice for your records.");
+                    }
+                    System.Diagnostics.Process.Start(path);
+                }
+                else
+                    System.Diagnostics.Process.Start(path);
+            }
+
+            else if(category == "Silver")
+            {
+                silverOrderInvoice inv = silverOrderInvoice.createSilverInvoice(orderID);
+
+                inv.setPrice();
+                inv.setCustID();
+                inv.setProductID();
+                inv.setAddress();
+
+                string filename = oID + ".txt";
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine("Silver Invoice: ");
+                        sw.WriteLine(" ");
+                        sw.WriteLine("Order Number: " + oID);
+                        sw.WriteLine("Address: " + inv.getAddress());
+                        sw.WriteLine("Product Number: " + inv.getProductID());
+                        sw.WriteLine("Customer ID: " + inv.getCustID());
+                        sw.WriteLine("Amount: " + inv.getPrice());
+                        sw.WriteLine("");
+                        sw.WriteLine("Please retain this invoice for your records.");
+                    }
+                    System.Diagnostics.Process.Start(path);
+                }
+                else
+                    System.Diagnostics.Process.Start(path);
+            }
+
+            else
+            {
+                standardOrderInvoice inv = standardOrderInvoice.createStdInvoice(orderID);
+
+                inv.setPrice();
+                inv.setCustID();
+                inv.setProductID();
+                inv.setAddress();
+
+                string filename = oID + ".txt";
+                string path = @"C:\Users\jack\SystemsAnalysis\Invoices\" + filename;
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine("Standard Invoice: ");
+                        sw.WriteLine(" ");
+                        sw.WriteLine("Order Number: " + oID);
+                        sw.WriteLine("Address: " + inv.getAddress());
+                        sw.WriteLine("Product Number: " + inv.getProductID());
+                        sw.WriteLine("Customer ID: " + inv.getCustID());
+                        sw.WriteLine("Amount: " + inv.getPrice());
+                        sw.WriteLine("");
+                        sw.WriteLine("Please retain this invoice for your records.");
+                    }
+                    System.Diagnostics.Process.Start(path);
+                }
+                else
+                    System.Diagnostics.Process.Start(path);
+            }
+
         }
     }
 }

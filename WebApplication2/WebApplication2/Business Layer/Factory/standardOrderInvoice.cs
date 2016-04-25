@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication2.Business_Layer
+namespace WebApplication2
 {
     public class standardOrderInvoice : iInvoice
     {

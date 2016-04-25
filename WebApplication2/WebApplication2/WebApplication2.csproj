@@ -57,7 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Factory\Invoice.aspx" />
+    <Content Include="Business Layer\Factory\Invoice.aspx" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
     <Content Include="ClassDiagram3.cd" />

@@ -1,0 +1,9 @@
+Standard Invoice: 
+ 
+Order Number: 2
+Address: My house
+Product Number: 1
+Customer ID: 1
+Amount: 320
+
+Please retain this invoice for your records.

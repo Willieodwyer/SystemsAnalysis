@@ -171,16 +171,16 @@ namespace WebApplication2
             }
         }
 
-        public static double getTotal(Cart cart)
+        public static double getTotal(int custID)
         {
             double total = 0.0;
-            int cartID = cart.CartID;
+ 
             List<int> pIDs = new List<int>();
             List<int> quantities = new List<int>();
            
             string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            String sql = "SELECT ProductID, Quantity FROM [ShoppingCart] WHERE CartID = @CartID";
+            String sql = "SELECT ProductID, Quantity FROM [ShoppingCart] WHERE CustomerID = @CustomerID";
 
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader;
@@ -188,8 +188,8 @@ namespace WebApplication2
 
             connection.Open();
 
-            command.Parameters.Add("@CartID", SqlDbType.Int);
-            command.Parameters["@CartID"].Value = cart.CartID;
+            command.Parameters.Add("@CustomerID", SqlDbType.Int);
+            command.Parameters["@CustomerID"].Value = custID;
 
             reader = command.ExecuteReader();
             while (reader.HasRows)
@@ -214,5 +214,124 @@ namespace WebApplication2
             return total;
         }
 
+        public static string emptyCart(Cart cart, int custID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            String sql = "DELETE FROM [ShoppingCart] WHERE CustomerID = @CustomerID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            try
+            {
+                command.Parameters.Add("@CustomerID", SqlDbType.Int);
+                command.Parameters["@CustomerID"].Value = cart.CustomerID;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                connection.Close();
+                return "Complete";
+            }
+            catch (SqlException sqlEx)
+            {
+                return (sqlEx.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static Boolean checkWithCase(Cart cart, int custID)
+        {
+            List<int> pIDs = new List<int>();
+            Boolean hasPhone = false, hasCase = false, hasBoth = false;
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            String sql = "SELECT ProductID FROM [ShoppingCart] WHERE CustomerID = @CustomerID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+
+
+            connection.Open();
+
+            command.Parameters.Add("@CustomerID", SqlDbType.Int);
+            command.Parameters["@CustomerID"].Value = custID;
+
+            reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    pIDs.Add(reader.GetInt32(0));
+                }
+                reader.NextResult();
+            }
+
+
+            connection.Close();
+
+
+            for (int i = 0; i < pIDs.Count; i++)
+            {
+                if (StandardProduct.getProductType(pIDs[i]).Contains("Phone"))
+                    hasPhone = true;
+                else if (StandardProduct.getProductType(pIDs[i]).Contains("Case"))
+                    hasCase = true;
+                
+            }
+
+            if (hasPhone && hasCase)
+                hasBoth = true;
+
+            return hasBoth;
+        }
+
+        public static Boolean checkWithAccessory(Cart cart, int custID)
+        {
+            List<int> pIDs = new List<int>();
+            Boolean hasPhone = false, hasAccessory = false, hasBoth = false;
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            String sql = "SELECT ProductID FROM [ShoppingCart] WHERE CustomerID = @CustomerID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader;
+
+
+            connection.Open();
+
+            command.Parameters.Add("@CustomerID", SqlDbType.Int);
+            command.Parameters["@CustomerID"].Value = custID;
+
+            reader = command.ExecuteReader();
+            while (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    pIDs.Add(reader.GetInt32(0));
+                }
+                reader.NextResult();
+            }
+
+
+            connection.Close();
+
+
+            for (int i = 0; i < pIDs.Count; i++)
+            {
+                if (StandardProduct.getProductType(pIDs[i]).Contains("Phone"))
+                    hasPhone = true;
+                else if (StandardProduct.getProductType(pIDs[i]).Contains("Accessory"))
+                    hasAccessory = true;
+
+            }
+
+            if (hasPhone && hasAccessory)
+                hasBoth = true;
+
+            return hasBoth;
+        }
     }
 }
