@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using MobilePhoneRetailer.BusinessLayer.Factory;
 
-namespace WebApplication2.Business_Layer
+namespace MobilePhoneRetailer.Business_Layer
 {
     public partial class WebForm1 : System.Web.UI.Page
     {

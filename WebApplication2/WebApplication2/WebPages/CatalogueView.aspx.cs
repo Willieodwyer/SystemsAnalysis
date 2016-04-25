@@ -12,8 +12,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.BusinessLayer;
+using MobilePhoneRetailer.BusinessLayer.Cart;
 
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class CatalogueView : System.Web.UI.Page
     {
@@ -21,7 +23,7 @@ namespace WebApplication2.WebPages
         static Cart sessionCart;
         static Customer sessionCust;
 
-        public WebApplication2.Catalogue Catalogue
+        public Catalogue Catalogue
         {
             get
             {

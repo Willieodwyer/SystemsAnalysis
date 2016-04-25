@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication2.WebPages {
+namespace MobilePhoneRetailer.WebPages {
     
     
     public partial class CartView {

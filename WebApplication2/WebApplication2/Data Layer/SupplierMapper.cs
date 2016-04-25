@@ -12,8 +12,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.BusinessLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.DataLayer
 {
     public class SupplierMapper
     {

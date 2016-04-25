@@ -12,16 +12,16 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
+using MobilePhoneRetailer.BusinessLayer;
 
-
-namespace WebApplication2.WebPages
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class AddSupplier : System.Web.UI.Page
     {
 
         static Supplier newSupp;
 
-        public WebApplication2.Supplier Supplier
+        public Supplier Supplier
         {
             get
             {

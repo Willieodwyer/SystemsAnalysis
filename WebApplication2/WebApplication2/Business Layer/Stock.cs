@@ -4,8 +4,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer
 {
     public class Stock
     {

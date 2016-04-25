@@ -12,13 +12,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
-//Session["CustObj"] = newCust;
-//sessionCust = (Customer)Session["CustObj"];
-namespace WebApplication2.WebPages
+using MobilePhoneRetailer.BusinessLayer.Order;
+
+namespace MobilePhoneRetailer.WebPages
 {
     public partial class OrderView : System.Web.UI.Page
     {
-        public WebApplication2.Order Order
+        public Order Order
         {
             get
             {

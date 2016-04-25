@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication2.Business_Layer {
+namespace MobilePhoneRetailer.Business_Layer {
     
     
     public partial class WebForm1 {

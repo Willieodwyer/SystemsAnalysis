@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer.Factory
 {
-    public class goldOrderInvoice : WebApplication2.Business_Layer.iInvoice
+    public class goldOrderInvoice : iInvoice
     {
         public int orderID { get; set; }
         public int price;

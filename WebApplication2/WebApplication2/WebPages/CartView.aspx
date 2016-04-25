@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CartView.aspx.cs" Inherits="WebApplication2.WebPages.CartView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CartView.aspx.cs" Inherits="MobilePhoneRetailer.WebPages.CartView" %>
 
 <!DOCTYPE html>
 

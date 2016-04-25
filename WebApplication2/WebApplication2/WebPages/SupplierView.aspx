@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupplierView.aspx.cs" Inherits="WebApplication2.WebPages.SupplierView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupplierView.aspx.cs" Inherits="MobilePhoneRetailer.WebPages.SupplierView" %>
 
 <!DOCTYPE html>
 

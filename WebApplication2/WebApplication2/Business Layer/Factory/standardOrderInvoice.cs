@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using WebApplication2.Business_Layer;
+using MobilePhoneRetailer.BusinessLayer.Factory;
+using MobilePhoneRetailer.DataLayer;
 
-namespace WebApplication2
+namespace MobilePhoneRetailer.BusinessLayer.Factory
 {
     public class standardOrderInvoice : iInvoice
     {
