@@ -19,7 +19,8 @@ namespace WebApplication2
     {
         public static string GetOrderID(Order ord){
             int oID = 0;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString); 
             SqlDataReader reader;
             SqlCommand cmd = new SqlCommand("SELECT OrderID FROM [Order] WHERE OrderID = (SELECT MAX(OrderID) FROM [Order])", con);
             try
@@ -48,14 +49,15 @@ namespace WebApplication2
 
         public static string CreateOrder(Order ord)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "INSERT INTO [Order] VALUES(@OrderID ,@CustomerID, @ProductID, @Address, @Amount, @OrderDate, @SupplierID)";
 
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -67,7 +69,7 @@ namespace WebApplication2
                     command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = ord.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.Product.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
                     command.Parameters["@Address"].Value = ord.Address;
@@ -97,7 +99,8 @@ namespace WebApplication2
 
         public static string EditOrder(Order ord)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "UPDATE [Order] SET CustomerID = @CustomerID, ProductID = @ProductID," +
                                 "Address = @Address, Amount = @Amount,  OrderDate = @OrderDate, SupplierID = @SupplierID WHERE OrderID = @OrderID)";
@@ -105,7 +108,7 @@ namespace WebApplication2
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -114,7 +117,7 @@ namespace WebApplication2
                     command.Parameters["@CustomerID"].Value = ord.CustomerID;
 
                     command.Parameters.Add("@ProductID", SqlDbType.Int);
-                    command.Parameters["@ProductID"].Value = ord.ProductID;
+                    command.Parameters["@ProductID"].Value = ord.Product.ProductID;
 
                     command.Parameters.Add("@Address", SqlDbType.NVarChar);
                     command.Parameters["@Address"].Value = ord.Address;
@@ -142,14 +145,15 @@ namespace WebApplication2
 
         public static string AddProduct(Order ord, int pID, double amnt)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "INSERT INTO [Order] VALUES(@OrderID ,@CustomerID, @ProductID, @Address, @Amount, @OrderDate, @SupplierID)";
 
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -191,14 +195,15 @@ namespace WebApplication2
 
         public static string RemoveProduct(Order ord, int pID)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True");
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
 
             String sql = "DELETE FROM [Order] WHERE [OrderID] = @OrderID AND [ProductID] = @ProductID";
 
             //if there is an error with the data it will catch the exception and display an error
             try
             {
-                if (ord.ProductID > 0)
+                if (ord.Product.ProductID > 0)
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(sql, connection);
@@ -220,6 +225,172 @@ namespace WebApplication2
             catch (SqlException sqlEx)
             {
                 return (sqlEx.Message);
+            }
+        }
+
+        public static string GetOrderPrice(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string price = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    price += reader["Amount"];
+                }
+                reader.Close();
+                
+              
+                command.ExecuteNonQuery();
+                connection.Close();
+                return price;
+            }
+            catch (SqlException sqlEx)
+            {
+                return (sqlEx.Message);
+            }
+        }
+
+        public static int GetOrderCustID(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string custID = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    custID += reader["CustomerID"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToInt32(custID);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static int GetOrderProductID(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string productID = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    productID += reader["ProductID"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToInt32(productID);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static string GetOrderAddress(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string address = "";
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    address += reader["Address"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return address;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static DateTime GetOrderDate(int oID)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader reader;
+            string date = "";
+            DateTime now = DateTime.Now;
+            String sql = "SELECT * FROM [Order] WHERE [OrderID] = @oID";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.Add("@oID", SqlDbType.Int);
+                command.Parameters["@oID"].Value = oID;
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    date += reader["OrderDate"];
+                }
+                reader.Close();
+
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return Convert.ToDateTime(date);
+            }
+            catch
+            {
+                return now;
             }
         }
     }

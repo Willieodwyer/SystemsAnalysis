@@ -13,16 +13,26 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class SupplierView : System.Web.UI.Page
     {
+        public WebApplication2.Supplier Supplier
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
+                SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Supplier]", sqlConnection);
                 sqlConnection.Open();
 

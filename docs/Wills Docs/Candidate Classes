@@ -1,0 +1,74 @@
+Lightweight Analysis Artifacts
+
+The group has decided upon a Data Driven Design approach to list any possible object to
+implement.
+
+List of Candidate Objects
+To find appropriate candidate objects, the noun identification technique has been applied to
+the described use cases. Simple heuristic has been used to identify potential objects.
+
+From User Use Cases:
+
+Potential Class:
+User
+Catalog
+Cart
+Product
+Orders
+Stock
+
+Attributes:
+User Name
+Password
+Email
+Category
+
+Event:
+Login
+Browse
+Search
+Validate
+Create
+Manage
+View
+Remove
+Add
+Ship
+Return
+
+Based on above we have decided upon these candidate classes
+Customer/User
+Product
+
+Cart
+Catalog
+
+Orders
+Stock
+
+Customer/User
+Customer is a user of the system outside the company. This would represent one individual
+ordering from over the Internet.
+
+Product
+A product is a phone/case/screen protector that the company has in stock or can add
+to an order. Products can be ordered from a supplier and shipped to customers.
+
+Cart
+The cart contains a list of products and their quantities for a potential order.
+This can be viewed and edited by the customer and is stored for future use
+
+Catalog
+A Catalog is the list of all products that the system makes available to the customer
+This tells the user whether the product is in stock or not and whether it is available
+to order
+
+Stock
+Stock is a list of all product in the warehouse available for immediate shipping.
+This stores a list of their quantities and a supplier
+
+Orders
+Orders happen after a cart has been completed
+It contains a list of products and their quantities for an order and also
+whether it has shipped or not. This can be viewed by the customer and is stored for
+future reference

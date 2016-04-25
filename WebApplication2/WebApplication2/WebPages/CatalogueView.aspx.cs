@@ -13,38 +13,35 @@ using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
 using System.Text;
 
-namespace WebApplication2
+namespace WebApplication2.WebPages
 {
     public partial class CatalogueView : System.Web.UI.Page
     {
         static Catalogue catalogue = new Catalogue();
+        static Cart sessionCart;
+        static Customer sessionCust;
+
+        public WebApplication2.Catalogue Catalogue
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Products] ORDER BY ProductID", sqlConnection);
-                sqlConnection.Open();
-
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-
-                GridView1.DataSource = reader;
-                GridView1.DataBind();
-                //Response.Write(Session["ID"].ToString());
-            }
-            catch (Exception sept)
-            {
-                Console.Write(sept.Message);
-            }
+            sessionCust = (Customer)Session["CustOBJ"];
         }
 
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string strSQLconnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\werl\Documents\Visual Studio 2013\Projects\SystemsAnalysis\WebApplication2\WebApplication2\App_Data\Database.mdf;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(strSQLconnection);
+                SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Products] WHERE Type = @SearchString", sqlConnection);//[Type] = " + Catalogue.Search(txtSearch.Text)
 
                 sqlCommand.Parameters.Add("@SearchString", SqlDbType.NVarChar);
@@ -63,6 +60,31 @@ namespace WebApplication2
             {
                 Console.Write(sept.Message);
             }
+        }
+
+        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (sessionCust != null)
+            {
+                sessionCart = new Cart(sessionCust.CustomerID, 1);
+                //Get the button clicked.
+                Button btnAddToCart = ((Button)e.CommandSource);
+                //get the row the button lives in
+                GridViewRow currentRow = ((GridViewRow)btnAddToCart.NamingContainer);
+                //find the quantity text box
+                TextBox txtQuantity = ((TextBox)currentRow.FindControl("txtQuantity"));
+                Int32 qty = Convert.ToInt32(txtQuantity.Text);
+                //get the row's datakey value by keyname using .Values["keyname"] or if you only have one datakey field you can just use .Value  
+                Int32 prodId = Convert.ToInt32(GridView3.DataKeys[currentRow.RowIndex].Values["ProductID"].ToString());
+                //pass the quantity value and the prodid to your AddToCart method. 
+                //CartFunctions.AddItemToCart(prodId, txtQuantity.Text, 0.0M);
+
+                sessionCart.AddToCart(prodId, qty);
+                //Response.Write for testing only.. 
+                lblAddToCart.Text = txtQuantity.Text + " of ProductID " + prodId + " added to cart.";
+            }
+            else
+                Response.Write("Error: no customer is in session.");
         }
     }
 }

@@ -12,6 +12,17 @@ namespace WebApplication2
         public int ProductID { get; set; }
         public int Quantity { get; set; }
 
+        public StockMapper StockMapper
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public Stock(int productID, int quantity)
         {
             ProductID = productID;
