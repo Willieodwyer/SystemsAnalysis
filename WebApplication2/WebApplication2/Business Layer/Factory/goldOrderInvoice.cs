@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication2
 {
-    public class goldOrderInvoice : iInvoice
+    public class goldOrderInvoice : WebApplication2.Business_Layer.iInvoice
     {
         public int orderID { get; set; }
         public int price;
@@ -16,7 +16,7 @@ namespace WebApplication2
         public string address;
         public DateTime OrderDate;
 
-        private goldOrderInvoice(int ID)
+        public goldOrderInvoice(int ID)
         {
             orderID = ID;
         }
