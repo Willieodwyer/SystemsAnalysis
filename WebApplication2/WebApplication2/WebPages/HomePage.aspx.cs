@@ -83,14 +83,9 @@ namespace WebApplication2.WebPages
         }
 
         protected void Button18_Click(object sender, EventArgs e)
-<<<<<<< HEAD
-         {
-             Response.Redirect("Invoice.aspx", true);
-          }
-=======
         {
-            Response.Redirect("Invoice.aspx", true);
+             Response.Redirect("Invoice.aspx", true);
         }
->>>>>>> b74ee4d3449b0ce7751f6212542f1a3eba924989
+
     }
 }
